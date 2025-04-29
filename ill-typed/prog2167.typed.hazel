@@ -1,0 +1,1 @@
+let listReverse : forall a -> forall b -> a -> b = typfun a -> typfun b -> fun l -> let reverseHelper = fun acc -> if [] then acc else reverseHelper(h :: acc)(t) in reverseHelper([])(l) in ?

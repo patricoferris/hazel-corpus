@@ -1,0 +1,4 @@
+let wwhile = fun (f, b) -> let x = f(b) in let h :: t = x in let r :: l = t in case t 
+  | false => h
+  | true => wwhile((f, h))
+end in ?

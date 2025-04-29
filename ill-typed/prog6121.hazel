@@ -1,0 +1,3 @@
+let equiv = fun x -> fun y -> case x 
+  | h :: tl => ?
+end in ?

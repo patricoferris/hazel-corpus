@@ -1,0 +1,4 @@
+let listReverse : forall a -> [a] -> [a] = typfun a -> fun l -> case l 
+  | [] => []
+  | h :: t => [h]
+end in ?

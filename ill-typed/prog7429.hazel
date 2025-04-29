@@ -1,0 +1,4 @@
+let listReverse = fun l -> case l 
+  | [] => []
+  | h :: t => [h]
+end in ?

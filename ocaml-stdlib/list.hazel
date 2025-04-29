@@ -1,41 +1,38 @@
-let length_aux : forall a -> Int -> [a] -> Int = typfun a -> fun len -> fun x37 -> case x37 
+let length_aux : forall a -> Int -> [a] -> Int = typfun a -> fun len -> fun x30 -> case x30 
   | [] => len
   | _ :: l => length_aux@<a>(len + 1)(l)
-end in let length : forall a -> [a] -> Int = typfun a -> fun l -> length_aux@<a>(0)(l) in let cons : forall a -> a -> [a] -> [a] = typfun a -> fun a -> fun l -> a :: l in let singleton : forall a -> a -> [a] = typfun a -> fun a -> [a] in let hd : forall a -> [a] -> a = typfun a -> fun x36 -> case x36 
+end in let length : forall a -> [a] -> Int = typfun a -> fun l -> length_aux@<a>(0)(l) in let cons : forall a -> a -> [a] -> [a] = typfun a -> fun a -> fun l -> a :: l in let singleton : forall a -> a -> [a] = typfun a -> fun a -> [a] in let hd : forall a -> [a] -> a = typfun a -> fun x29 -> case x29 
   | [] => failwith("hd")
   | a :: _ => a
-end in let tl : forall a -> [a] -> [a] = typfun a -> fun x35 -> case x35 
+end in let tl : forall a -> [a] -> [a] = typfun a -> fun x28 -> case x28 
   | [] => failwith("tl")
   | _ :: l => l
 end in let nth : forall a -> [a] -> Int -> a = typfun a -> fun l -> fun n -> if n < 0 then invalid_arg("List.nth") else let nth_aux = fun l -> fun n -> case l 
   | [] => failwith("nth")
   | a :: l => if n == 0 then a else nth_aux(l)(n - 1)
-end in nth_aux(l)(n) in let nth_opt = fun l -> fun n -> if n < 0 then invalid_arg("List.nth") else let nth_aux = fun l -> fun n -> case l 
-  | [] => None
-  | a :: l => if n == 0 then Some(a) else nth_aux(l)(n - 1)
 end in nth_aux(l)(n) in let append : forall a -> [a] -> [a] -> [a] = @ in let rev_append : forall a -> [a] -> [a] -> [a] = typfun a -> fun l1 -> fun l2 -> case l1 
   | [] => l2
   | a :: l => rev_append@<a>(l)(a :: l2)
-end in let rev : forall a -> [a] -> [a] = typfun a -> fun l -> rev_append@<a>(l)([]) in let init : forall a -> Int -> Int -> (Int -> a) -> [a] = typfun a -> fun i -> fun last -> fun f -> if i > last then [] else if i == last then [f(i)] else let r1 = f(i) in let r2 = f(i + 1) in r1 :: r2 :: init@<a>(i + 2)(last)(f) in let init : forall a -> Int -> Int -> (Int -> a) -> [a] = typfun a -> fun len -> fun f -> if len < 0 then invalid_arg("List.init") else init@<a>(0)(len - 1)(f) in let flatten : forall a -> [[a]] -> [a] = typfun a -> fun x34 -> case x34 
+end in let rev : forall a -> [a] -> [a] = typfun a -> fun l -> rev_append@<a>(l)([]) in let init : forall a -> Int -> Int -> (Int -> a) -> [a] = typfun a -> fun i -> fun last -> fun f -> if i > last then [] else if i == last then [f(i)] else let r1 = f(i) in let r2 = f(i + 1) in r1 :: r2 :: init@<a>(i + 2)(last)(f) in let init : forall a -> Int -> Int -> (Int -> a) -> [a] = typfun a -> fun len -> fun f -> if len < 0 then invalid_arg("List.init") else init@<a>(0)(len - 1)(f) in let flatten : forall a -> [[a]] -> [a] = typfun a -> fun x27 -> case x27 
   | [] => []
   | l :: r => @(l)(flatten@<a>(r))
-end in let concat : forall a -> [[a]] -> [a] = flatten in let map : forall a -> forall b -> (a -> b) -> [a] -> [b] = typfun a -> typfun b -> fun f -> fun x33 -> case x33 
+end in let concat : forall a -> [[a]] -> [a] = flatten in let map : forall a -> forall b -> (a -> b) -> [a] -> [b] = typfun a -> typfun b -> fun f -> fun x26 -> case x26 
   | [] => []
   | [a1] => let r1 = f(a1) in [r1]
   | a1 :: a2 :: l =>
       let r1 = f(a1) in let r2 = f(a2) in r1 :: r2 :: map@<a>@<b>(f)(l)
-end in let mapi : forall a -> forall b -> Int -> (Int -> a -> b) -> [a] -> [b] = typfun a -> typfun b -> fun i -> fun f -> fun x32 -> case x32 
+end in let mapi : forall a -> forall b -> Int -> (Int -> a -> b) -> [a] -> [b] = typfun a -> typfun b -> fun i -> fun f -> fun x25 -> case x25 
   | [] => []
   | [a1] => let r1 = f(i)(a1) in [r1]
   | a1 :: a2 :: l =>
       let r1 = f(i)(a1) in let r2 = f(i + 1)(a2) in r1 :: r2 :: mapi@<a>@<b>(i + 2)(f)(l)
-end in let mapi : forall a -> forall b -> Int -> (Int -> a -> b) -> [a] -> [b] = typfun a -> typfun b -> fun f -> fun l -> mapi@<a>@<b>(0)(f)(l) in let rev_map : forall a -> forall b -> (a -> b) -> [a] -> [b] = typfun a -> typfun b -> fun f -> fun l -> let rmap_f = fun accu -> fun x31 -> case x31 
+end in let mapi : forall a -> forall b -> Int -> (Int -> a -> b) -> [a] -> [b] = typfun a -> typfun b -> fun f -> fun l -> mapi@<a>@<b>(0)(f)(l) in let rev_map : forall a -> forall b -> (a -> b) -> [a] -> [b] = typfun a -> typfun b -> fun f -> fun l -> let rmap_f = fun accu -> fun x24 -> case x24 
   | [] => accu
   | a :: l => rmap_f(f(a) :: accu)(l)
-end in rmap_f([])(l) in let iter : forall a -> forall b -> (a -> b) -> [a] -> unit = typfun a -> typfun b -> fun f -> fun x30 -> case x30 
+end in rmap_f([])(l) in let iter : forall a -> forall b -> (a -> b) -> [a] -> unit = typfun a -> typfun b -> fun f -> fun x23 -> case x23 
   | [] => ()
   | a :: l => ?
-end in let iteri : forall a -> forall b -> Int -> (Int -> a -> b) -> [a] -> unit = typfun a -> typfun b -> fun i -> fun f -> fun x29 -> case x29 
+end in let iteri : forall a -> forall b -> Int -> (Int -> a -> b) -> [a] -> unit = typfun a -> typfun b -> fun i -> fun f -> fun x22 -> case x22 
   | [] => ()
   | a :: l => ?
 end in let iteri : forall a -> forall b -> Int -> (Int -> a -> b) -> [a] -> unit = typfun a -> typfun b -> fun f -> fun l -> iteri@<a>@<b>(0)(f)(l) in let fold_left : forall a -> forall b -> (a -> b -> a) -> a -> [b] -> a = typfun a -> typfun b -> fun f -> fun accu -> fun l -> case l 
@@ -68,10 +65,10 @@ end in let fold_right2 : forall a -> forall b -> forall c -> (a -> b -> c -> c) 
   | (a1 :: l1, a2 :: l2) =>
       f(a1)(a2)(fold_right2@<a>@<b>@<c>(f)(l1)(l2)(accu))
   | (_, _) => invalid_arg("List.fold_right2")
-end in let for_all : forall a -> (a -> Bool) -> [a] -> Bool = typfun a -> fun p -> fun x28 -> case x28 
+end in let for_all : forall a -> (a -> Bool) -> [a] -> Bool = typfun a -> fun p -> fun x21 -> case x21 
   | [] => true
   | a :: l => &&(p(a))(for_all@<a>(p)(l))
-end in let exists : forall a -> (a -> Bool) -> [a] -> Bool = typfun a -> fun p -> fun x27 -> case x27 
+end in let exists : forall a -> (a -> Bool) -> [a] -> Bool = typfun a -> fun p -> fun x20 -> case x20 
   | [] => false
   | a :: l => ||(p(a))(exists@<a>(p)(l))
 end in let for_all2 : forall a -> forall b -> (a -> b -> Bool) -> [a] -> [b] -> Bool = typfun a -> typfun b -> fun p -> fun l1 -> fun l2 -> case (l1, l2) 
@@ -82,73 +79,42 @@ end in let exists2 : forall a -> forall b -> (a -> b -> Bool) -> [a] -> [b] -> B
   | ([], []) => false
   | (a1 :: l1, a2 :: l2) => ||(p(a1)(a2))(exists2@<a>@<b>(p)(l1)(l2))
   | (_, _) => invalid_arg("List.exists2")
-end in let mem : forall a -> a -> [a] -> Bool = typfun a -> fun x -> fun x26 -> case x26 
+end in let mem : forall a -> a -> [a] -> Bool = typfun a -> fun x -> fun x19 -> case x19 
   | [] => false
   | a :: l => ||(compare@<a>@<b>(a)(x) == 0)(mem@<a>(x)(l))
-end in let memq : forall a -> a -> [a] -> Bool = typfun a -> fun x -> fun x25 -> case x25 
+end in let memq : forall a -> a -> [a] -> Bool = typfun a -> fun x -> fun x18 -> case x18 
   | [] => false
   | a :: l => ||(==(a)(x))(memq@<a>(x)(l))
-end in let assoc : forall b -> a -> [?] -> b = typfun b -> fun x -> fun x24 -> case x24 
+end in let assoc : forall b -> a -> [?] -> b = typfun b -> fun x -> fun x17 -> case x17 
   | [] => raise(Not_found)
   | (a, b) :: l => if compare@<a>@<b>(a)(x) == 0 then b else assoc@<b>(x)(l)
-end in let assoc_opt = fun x -> fun x23 -> case x23 
-  | [] => None
-  | (a, b) :: l =>
-      if compare@<a>@<b>(a)(x) == 0 then Some(b) else assoc_opt@<b>(x)(l)
-end in let assq : forall b -> a -> [?] -> b = typfun b -> fun x -> fun x22 -> case x22 
+end in let assq : forall b -> a -> [?] -> b = typfun b -> fun x -> fun x16 -> case x16 
   | [] => raise(Not_found)
   | (a, b) :: l => if ==(a)(x) then b else assq@<b>(x)(l)
-end in let assq_opt = fun x -> fun x21 -> case x21 
-  | [] => None
-  | (a, b) :: l => if ==(a)(x) then Some(b) else assq_opt@<b>(x)(l)
-end in let mem_assoc : a -> [?] -> Bool = fun x -> fun x20 -> case x20 
+end in let mem_assoc : a -> [?] -> Bool = fun x -> fun x15 -> case x15 
   | [] => false
   | (a, _) :: l => ||(compare@<a>@<b>(a)(x) == 0)(mem_assoc(x)(l))
-end in let mem_assq : a -> [?] -> Bool = fun x -> fun x19 -> case x19 
+end in let mem_assq : a -> [?] -> Bool = fun x -> fun x14 -> case x14 
   | [] => false
   | (a, _) :: l => ||(==(a)(x))(mem_assq(x)(l))
-end in let remove_assoc : a -> [?] -> [?] = fun x -> fun x18 -> case x18 
+end in let remove_assoc : a -> [?] -> [?] = fun x -> fun x13 -> case x13 
   | [] => []
   | ? :: l =>
       if compare@<a>@<b>(a)(x) == 0 then l else pair :: remove_assoc(x)(l)
-end in let remove_assq : a -> [?] -> [?] = fun x -> fun x17 -> case x17 
+end in let remove_assq : a -> [?] -> [?] = fun x -> fun x12 -> case x12 
   | [] => []
   | ? :: l => if ==(a)(x) then l else pair :: remove_assq(x)(l)
-end in let find : forall a -> (a -> Bool) -> [a] -> a = typfun a -> fun p -> fun x16 -> case x16 
+end in let find : forall a -> (a -> Bool) -> [a] -> a = typfun a -> fun p -> fun x11 -> case x11 
   | [] => raise(Not_found)
   | x :: l => if p(x) then x else find@<a>(p)(l)
-end in let find_opt = fun p -> fun x15 -> case x15 
-  | [] => None
-  | x :: l => if p(x) then Some(x) else find_opt@<a>(p)(l)
-end in let find_index = fun p -> let aux = fun i -> fun x14 -> case x14 
-  | [] => None
-  | a :: l => if p(a) then Some(i) else aux(i + 1)(l)
-end in aux(0) in let find_map = fun f -> fun x13 -> case x13 
-  | [] => None
-  | x :: l => case f(x) 
-  | ? => result
-  | None => find_map@<a>@<b>(f)(l)
-end
-end in let find_mapi = fun f -> let aux = fun i -> fun x12 -> case x12 
-  | [] => None
-  | x :: l => case f(i)(x) 
-  | ? => result
-  | None => aux(i + 1)(l)
-end
-end in aux(0) in let find_all : forall a -> (a -> Bool) -> [a] -> [a] = typfun a -> fun p -> fun x11 -> case x11 
+end in let find_all : forall a -> (a -> Bool) -> [a] -> [a] = typfun a -> fun p -> fun x10 -> case x10 
   | [] => []
   | x :: l => if p(x) then x :: find_all@<a>(p)(l) else find_all@<a>(p)(l)
-end in let filter : forall a -> (a -> Bool) -> [a] -> [a] = find_all in let filteri : forall a -> (Int -> a -> Bool) -> Int -> [a] -> [a] = typfun a -> fun p -> fun i -> fun x10 -> case x10 
+end in let filter : forall a -> (a -> Bool) -> [a] -> [a] = find_all in let filteri : forall a -> (Int -> a -> Bool) -> Int -> [a] -> [a] = typfun a -> fun p -> fun i -> fun x9 -> case x9 
   | [] => []
   | x :: l =>
       let i' = i + 1 in if p(i)(x) then x :: filteri@<a>(p)(i')(l) else filteri@<a>(p)(i')(l)
-end in let filteri : forall a -> (Int -> a -> Bool) -> Int -> [a] -> [a] = typfun a -> fun p -> fun l -> filteri@<a>(p)(0)(l) in let filter_map = fun f -> fun x9 -> case x9 
-  | [] => []
-  | x :: l => case f(x) 
-  | None => filter_map@<a>@<b>(f)(l)
-  | Some(v) => v :: filter_map@<a>@<b>(f)(l)
-end
-end in let prepend_concat_map : forall a -> forall b -> [a] -> (b -> [a]) -> [b] -> [a] = typfun a -> typfun b -> fun ys -> fun f -> fun xs -> case ys 
+end in let filteri : forall a -> (Int -> a -> Bool) -> Int -> [a] -> [a] = typfun a -> fun p -> fun l -> filteri@<a>(p)(0)(l) in let prepend_concat_map : forall a -> forall b -> [a] -> (b -> [a]) -> [b] -> [a] = typfun a -> typfun b -> fun ys -> fun f -> fun xs -> case ys 
   | [] => concat_map@<a>@<b>(f)(xs)
   | y :: ys => y :: prepend_concat_map@<a>@<b>(ys)(f)(xs)
 end in let concat_map : forall a -> forall b -> (a -> [b]) -> [a] -> [b] = typfun a -> typfun b -> fun f -> fun x8 -> case x8 

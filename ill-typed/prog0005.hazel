@@ -1,7 +1,4 @@
-let sumList : forall a -> forall b -> [a] -> [b] = typfun a -> typfun b -> fun xs -> case xs 
-  | [] => []
-  | x :: xs' => 1(sumList)(xs')
-end in let sumList = fun xs -> case xs 
+let sumList = fun xs -> case xs 
   | [] => []
   | x :: xs' => 1(sumList)(xs')
 end in ?

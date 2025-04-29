@@ -44,13 +44,13 @@ let nth l n =
     | a::l -> if n = 0 then a else nth_aux l (n-1)
   in nth_aux l n
 
-let nth_opt l n =
-  if n < 0 then invalid_arg "List.nth" else
-  let rec nth_aux l n =
-    match l with
-    | [] -> None
-    | a::l -> if n = 0 then Some a else nth_aux l (n-1)
-  in nth_aux l n
+(* let nth_opt l n = *)
+(*   if n < 0 then invalid_arg "List.nth" else *)
+(*   let rec nth_aux l n = *)
+(*     match l with *)
+(*     | [] -> None *)
+(*     | a::l -> if n = 0 then Some a else nth_aux l (n-1) *)
+(*   in nth_aux l n *)
 
 let append = (@)
 
@@ -201,17 +201,17 @@ let rec assoc x = function
     [] -> raise Not_found
   | (a,b)::l -> if compare a x = 0 then b else assoc x l
 
-let rec assoc_opt x = function
-    [] -> None
-  | (a,b)::l -> if compare a x = 0 then Some b else assoc_opt x l
+(* let rec assoc_opt x = function *)
+(*     [] -> None *)
+(*   | (a,b)::l -> if compare a x = 0 then Some b else assoc_opt x l *)
 
 let rec assq x = function
     [] -> raise Not_found
   | (a,b)::l -> if a == x then b else assq x l
 
-let rec assq_opt x = function
-    [] -> None
-  | (a,b)::l -> if a == x then Some b else assq_opt x l
+(* let rec assq_opt x = function *)
+(*     [] -> None *)
+(*   | (a,b)::l -> if a == x then Some b else assq_opt x l *)
 
 let rec mem_assoc x = function
   | [] -> false
@@ -234,33 +234,33 @@ let rec find p = function
   | [] -> raise Not_found
   | x :: l -> if p x then x else find p l
 
-let rec find_opt p = function
-  | [] -> None
-  | x :: l -> if p x then Some x else find_opt p l
+(* let rec find_opt p = function *)
+(*   | [] -> None *)
+(*   | x :: l -> if p x then Some x else find_opt p l *)
 
-let find_index p =
-  let rec aux i = function
-    [] -> None
-    | a::l -> if p a then Some i else aux (i+1) l in
-  aux 0
+(* let find_index p = *)
+(*   let rec aux i = function *)
+(*     [] -> None *)
+(*     | a::l -> if p a then Some i else aux (i+1) l in *)
+(*   aux 0 *)
 
-let rec find_map f = function
-  | [] -> None
-  | x :: l ->
-     begin match f x with
-       | Some _ as result -> result
-       | None -> find_map f l
-     end
-
-let find_mapi f =
-  let rec aux i = function
-  | [] -> None
-  | x :: l ->
-     begin match f i x with
-       | Some _ as result -> result
-       | None -> aux (i+1) l
-     end in
-  aux 0
+(* let rec find_map f = function *)
+(*   | [] -> None *)
+(*   | x :: l -> *)
+(*      begin match f x with *)
+(*        | Some _ as result -> result *)
+(*        | None -> find_map f l *)
+(*      end *)
+(**)
+(* let find_mapi f = *)
+(*   let rec aux i = function *)
+(*   | [] -> None *)
+(*   | x :: l -> *)
+(*      begin match f i x with *)
+(*        | Some _ as result -> result *)
+(*        | None -> aux (i+1) l *)
+(*      end in *)
+(*   aux 0 *)
 
 let[@tail_mod_cons] rec find_all p = function
   | [] -> []
@@ -276,12 +276,12 @@ let[@tail_mod_cons] rec filteri p i = function
 
 let filteri p l = filteri p 0 l
 
-let[@tail_mod_cons] rec filter_map f = function
-  | [] -> []
-  | x :: l ->
-      match f x with
-      | None -> filter_map f l
-      | Some v -> v :: filter_map f l
+(* let[@tail_mod_cons] rec filter_map f = function *)
+(*   | [] -> [] *)
+(*   | x :: l -> *)
+(*       match f x with *)
+(*       | None -> filter_map f l *)
+(*       | Some v -> v :: filter_map f l *)
 
 let[@tail_mod_cons] rec concat_map f = function
   | [] -> []

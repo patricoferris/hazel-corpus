@@ -1,0 +1,1 @@
+let wwhile : forall a -> ? -> a = typfun a -> fun (f, b) -> let (b', c') = f(b) in if c' == true then wwhile@<a>((f, b')) else b' in let fixpoint : forall a -> ? -> a = typfun a -> fun (f, b) -> wwhile@<a>((fun x -> (f(b), NOT(b == f(b))), b)) in ?
