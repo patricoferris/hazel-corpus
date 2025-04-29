@@ -6,12 +6,12 @@ type expr =
   + Average(expr, expr)
   + Times(expr, expr)
   + Thresh(expr, expr, expr, expr)
- in let pi = *.(4.)(atan(1.)) in let eval = fun (e, x, y) -> case e 
+ in let pi = 4. *. atan(1.) in let eval = fun (e, x, y) -> case e 
   | VarX => x
   | VarY => y
-  | Sine(u) => sin(*.(pi)(eval(u)))
-  | Cos(u) => cos(*.(pi)(eval(u)))
-  | Average(u, v) => /.(+.(eval(u))(eval(v)))(2)
-  | Times(u, v) => *.(eval(u))(eval(v))
+  | Sine(u) => sin(pi *. eval(u))
+  | Cos(u) => cos(pi *. eval(u))
+  | Average(u, v) => eval(u) +. eval(v) /. 2
+  | Times(u, v) => eval(u) *. eval(v)
   | Thresh(s, t, u, v) => if eval(s) < eval(t) then eval(u) else eval(v)
 end in ?

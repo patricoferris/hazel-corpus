@@ -1,0 +1,12 @@
+let filter : forall a -> [a] -> a -> [a] = typfun a -> fun l -> fun a -> case l 
+  | [] => []
+  | h :: t => if a == h then filter@<a>(t)(a) else h :: filter@<a>(t)(a)
+end in let removeDuplicates : forall a -> [[a]] -> [a] = typfun a -> fun l -> let helper = fun (seen, rest) -> case rest 
+  | [] => seen
+  | h :: t =>
+      let seen' = h in let rest' = h :: filter@<a>(t)(h) in helper((seen', rest'))
+end in rev(helper(([], l))) in let removeDuplicates : forall a -> [[a]] -> [a] = typfun a -> fun l -> let helper = fun (seen, rest) -> case rest 
+  | [] => seen
+  | h :: t =>
+      let seen' = h in let rest' = h :: filter@<a>(t)(h) in helper((seen', rest'))
+end in removeDuplicates@<a>(helper([])) in ?

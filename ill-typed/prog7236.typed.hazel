@@ -1,0 +1,1 @@
+let clone : forall a -> a -> Int -> [a] = typfun a -> fun x -> fun n -> if n < 1 then [] else x :: clone@<a>(x)(n - 1) in let padZero : forall a -> forall b -> [a] -> [b] -> unit = typfun a -> typfun b -> fun l1 -> fun l2 -> let difference = length(l1) - length(l2) in ? in ?

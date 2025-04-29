@@ -1,0 +1,7 @@
+let removeZero : [Int] -> [Int] = fun l -> case l 
+  | [] => []
+  | h :: t => if h == 0 then removeZero(t) else h :: t
+end in let mulByDigit : Int -> [Int] -> [Int] = fun i -> fun l -> let f = fun a -> fun x -> let carry = i * x in case a 
+  | h :: t => h + carry / 10 :: int_mod((h + carry, 10)) :: t
+  | _ => carry / 10 :: [int_mod((carry, 10))]
+end in let base = [] in removeZero(fold_left(f)(base)(rev(l))) in ?

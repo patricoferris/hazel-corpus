@@ -1,0 +1,1 @@
+let pipe : [Int -> Int] -> Int = fun fs -> let f = fun a -> fun x -> x(a) in let base = 0 in fold_left(f)(base)(fs) in let _ = pipe([]) in ?

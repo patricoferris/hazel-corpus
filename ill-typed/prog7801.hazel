@@ -6,13 +6,13 @@ type expr =
   + Average(expr, expr)
   + Times(expr, expr)
   + Thresh(expr, expr, expr, expr)
- in let pi = *.(4.)(atan(1.)) in let eval = fun (e, x, y) -> case e 
+ in let pi = 4. *. atan(1.) in let eval = fun (e, x, y) -> case e 
   | VarX => x
   | VarY => y
-  | Sine(e) => sin(*.(pi)(eval((e, x, y))))
-  | Cosine(e) => cos(*.(pi)(eval((e, x, y))))
-  | Average(x, y) => Average(+.(eval((e, x, y)))(eval((e, x, y))) / 2.)
-  | Times(x, y) => *.(eval((e, x, y)))(eval((e, x, y)))
+  | Sine(e) => sin(pi *. eval((e, x, y)))
+  | Cosine(e) => cos(pi *. eval((e, x, y)))
+  | Average(x, y) => Average(eval((e, x, y)) +. eval((e, x, y)) / 2.)
+  | Times(x, y) => eval((e, x, y)) *. eval((e, x, y))
   | Thresh(w, x, y, z) =>
-      *.(*.(*.(eval((e, x, y)))(eval((e, x, y))))(eval((e, x, y))))(eval((e, x, y))(uncomment)(after)(implementing)(eval))
+      eval((e, x, y)) *. eval((e, x, y)) *. eval((e, x, y)) *. eval((e, x, y))(uncomment)(after)(implementing)(eval)
 end in ?

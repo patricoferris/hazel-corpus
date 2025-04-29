@@ -8,16 +8,15 @@ type expr =
   + Thresh(expr, expr, expr, expr)
   + Cotangent(expr)
   + Volume(expr, expr, expr)
- in let pi = *.(4.)(atan(1.)) in let eval = fun (e, x, y) -> case e 
+ in let pi = 4. *. atan(1.) in let eval = fun (e, x, y) -> case e 
   | VarX => x
   | VarY => y
-  | Sine(e) => sin(*.(pi)(eval((e, x, y))))
-  | Cosine(e) => cos(*.(pi)(eval((e, x, y))))
-  | Average(a, b) => /.(+.(eval((a, x, y)))(eval((b, x, y))))(2.)
-  | Times(a, b) => *.(eval((a, x, y)))(eval((b, x, y)))
+  | Sine(e) => sin(pi *. eval((e, x, y)))
+  | Cosine(e) => cos(pi *. eval((e, x, y)))
+  | Average(a, b) => eval((a, x, y)) +. eval((b, x, y)) /. 2.
+  | Times(a, b) => eval((a, x, y)) *. eval((b, x, y))
   | Thresh(a, b, c, d) =>
       if eval((a, x, y)) < eval((b, x, y)) then eval((c, x, y)) else eval((d, x, y))
   | Squares(e) => eval((e, x, y)) * eval((e, x, y))
-  | Volume(l, w, h) =>
-      *.(*.(eval((l, x, y)))(eval((w, x, y))))(eval((h, x, y)))
+  | Volume(l, w, h) => eval((l, x, y)) *. eval((w, x, y)) *. eval((h, x, y))
 end in ?

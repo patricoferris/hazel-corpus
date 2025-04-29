@@ -1,0 +1,5 @@
+let removeDuplicates = fun l -> let helper = fun (seen, rest) -> case rest 
+  | [] => seen
+  | h :: t =>
+      let seen' = ? in let rest' = failwith("to be written") in helper((seen', rest'))
+end in rev(helper(([], l))) in ?

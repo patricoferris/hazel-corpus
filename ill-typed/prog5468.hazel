@@ -9,8 +9,8 @@ type expr =
  in let eval = fun (e, x, y) -> case e 
   | VarX => x
   | VarY => y
-  | Sine(n) => sin(*.(3.14)(eval((n, x, y))))
-  | Consine(n) => cos(*.(3.14)(eval((n, x, y))))
-  | Average(m, n) => /.(+.(eval((m, x, y)))(eval((n, x, y))))(2)
-  | Times(m, n) => *.(eval((m, x, y)))(eval((n, x, y)))
+  | Sine(n) => sin(3.14 *. eval((n, x, y)))
+  | Consine(n) => cos(3.14 *. eval((n, x, y)))
+  | Average(m, n) => eval((m, x, y)) +. eval((n, x, y)) /. 2
+  | Times(m, n) => eval((m, x, y)) *. eval((n, x, y))
 end in ?

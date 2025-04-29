@@ -17,5 +17,5 @@ type expr =
   | Thresh(w, x, y, z) =>
       ^("(")(^(exprToString(w))(^("<")(^(exprToString(x))(^("?")(^(exprToString(y))(^(":")(exprToString(z))))))))
   | Cotanget(e) =>
-      ^("(")(^(/.(1.)("("))(^(tan)(^("("(exprToString)(e))(")))"))))
+      ^("(")(^(1. /. "(")(^(tan)(^("("(exprToString)(e))(")))"))))
 end in ?

@@ -1,0 +1,8 @@
+let clone : forall a -> a -> Int -> [a] = typfun a -> fun x -> fun n -> if n <= 0 then [] else x :: clone@<a>(x)(n - 1) in let padZero : [Int] -> [Int] -> ? = fun l1 -> fun l2 -> let s1 = length(l1) in let s2 = length(l2) in if s1 < s2 then (@(clone@<a>(0)(s2 - s1))(l1), l2) else if s2 < s1 then (l1, @(clone@<a>(0)(s1 - s2))(l2)) else (l1, l2) in let removeZero : [Int] -> [Int] = fun l -> case l 
+  | [] => []
+  | h :: t => if !=(h)(0) then h :: t else removeZero(t)
+end in let bigAdd : [Int] -> [Int] -> [Int] = fun l1 -> fun l2 -> let add = fun (l1, l2) -> let f = fun a -> fun x -> case a 
+  | (_, []) => (fst(x) + snd(x) / 10, [int_mod((fst(x) + snd(x), 10))])
+  | (c, h :: t) =>
+      let sum = c + fst(x) + snd(x) in (sum / 10, int_mod((sum, 10)) :: snd(a))
+end in let base = (0, []) in let args = @(combine(rev(l1))(rev(l2)))([(0, 0)]) in let (_, res) = fold_left(f)(base)(args) in res in removeZero(add(padZero(l1)(l2))) in let bigMul : forall a -> forall b -> a -> [b] -> [Int] = typfun a -> typfun b -> fun l1 -> fun l2 -> let f = fun a -> fun x -> (fst(a), bigAdd(())(())) in let base = (0, []) in let args = rev(l2) in let (_, res) = fold_left(f)(base)(args) in res in ?

@@ -1,0 +1,5 @@
+let digitsOfInt = fun n -> if n <= 0 then [] else rev(int_mod((n, 10)) :: rev(digitsOfInt(n / 10))) in let sumList = fun xs -> case xs 
+  | [] => 0
+  | h :: t => h + sumList(t)
+  | _ => -1
+end in let additivePersistence = fun n -> let count = [0] in ? in ?

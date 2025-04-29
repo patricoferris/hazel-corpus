@@ -1,4 +1,4 @@
-let pi = *.(4.)(atan(1.)) in type expr = 
+let pi = 4. *. atan(1.) in type expr = 
   + VarX
   + VarY
   + Sine(expr)
@@ -11,15 +11,13 @@ let pi = *.(4.)(atan(1.)) in type expr =
  in let eval = fun (e, x, y) -> case e 
   | VarX => x
   | VarY => y
-  | Sine(expr) => sin(*.(pi)(eval((expr, x, y))))
-  | Cosine(expr) => cos(*.(pi)(eval((expr, x, y))))
-  | Average(expr1, expr2) =>
-      /.(+.(eval((expr1, x, y)))(eval((expr2, x, y))))(2.)
-  | Times(expr1, expr2) => *.(eval((expr1, x, y)))(eval((expr2, x, y)))
+  | Sine(expr) => sin(pi *. eval((expr, x, y)))
+  | Cosine(expr) => cos(pi *. eval((expr, x, y)))
+  | Average(expr1, expr2) => eval((expr1, x, y)) +. eval((expr2, x, y)) /. 2.
+  | Times(expr1, expr2) => eval((expr1, x, y)) *. eval((expr2, x, y))
   | Thresh(expr1, expr2, expr3, expr4) =>
       if eval((expr1, x, y)) < eval((expr2, x, y)) then eval((expr3, x, y)) else eval((expr4, x, y))
-  | SumInts(expr) =>
-      /.(*.(eval((expr, x, y)))(+.(eval((expr, x, y)))(1.)))(2.)
+  | SumInts(expr) => eval((expr, x, y)) *. eval((expr, x, y)) +. 1. /. 2.
   | Power(expr1, expr2, expr3) =>
-      eval((expr1, x, y)) ** abs_float(+.(eval((expr2, x, y)))(eval((expr3, x, y))))
+      eval((expr1, x, y)) ** abs_float(eval((expr2, x, y)) +. eval((expr3, x, y)))
 end in let _ = eval((Power((SumInts(Var), VarY, VarX)), -0.999999, 0.99999)) in ?

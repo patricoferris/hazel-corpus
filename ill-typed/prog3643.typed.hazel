@@ -1,0 +1,1 @@
+let padZero : [a] -> [b] -> ? = fun l1 -> fun l2 -> if length(l1) == length(l2) then (l1, l2) else ? in ?

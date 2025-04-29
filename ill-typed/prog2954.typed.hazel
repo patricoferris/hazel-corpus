@@ -1,0 +1,5 @@
+let sepConcat : String -> [String] -> String = fun sep -> fun sl -> case sl 
+  | [] => ""
+  | h :: t =>
+      let f = fun a -> fun x -> if length(()) == 0 then ^(a)(x) else ^(a)(^(x)(sep)) in let base = "" in let l = sl in fold_left(f)(base)(l)
+end in ?

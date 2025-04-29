@@ -8,16 +8,16 @@ type expr =
   + Average(expr, expr)
   + Times(expr, expr)
   + Thresh(expr, expr, expr, expr)
- in let pi = *.(4.)(atan(1.)) in let eval = fun (e, x, y) -> case e 
+ in let pi = 4. *. atan(1.) in let eval = fun (e, x, y) -> case e 
   | VarX => x
   | VarY => y
-  | Sine(a) => sin(*.(pi)(eval((a, x, y))))
-  | Cosine(a) => cos(*.(pi)(eval((a, x, y))))
-  | Boo(a) => /.(+.(eval((a, x, y)))(eval((a, x, y))))(100.)
-  | Average(a, b) => /.(+.(eval((a, x, y)))(eval((b, x, y))))(2.)
-  | Times(a, b) => *.(eval((a, x, y)))(eval((b, x, y)))
+  | Sine(a) => sin(pi *. eval((a, x, y)))
+  | Cosine(a) => cos(pi *. eval((a, x, y)))
+  | Boo(a) => eval((a, x, y)) +. eval((a, x, y)) /. 100.
+  | Average(a, b) => eval((a, x, y)) +. eval((b, x, y)) /. 2.
+  | Times(a, b) => eval((a, x, y)) *. eval((b, x, y))
   | Hoi(a, b, c) =>
-      /.(*.(sin(*.(pi)(eval((a, x, y)))))(cos(*.(pi)(eval((b, x, y))))))(eval((c, x, y)))
+      sin(pi *. eval((a, x, y))) *. cos(pi *. eval((b, x, y))) /. eval((c, x, y))
   | Thresh(a, b, c, d) =>
       if eval((a, x, y)) < eval((b, x, y)) then eval((c, x, y)) else eval((d, x, y))
 end in ?

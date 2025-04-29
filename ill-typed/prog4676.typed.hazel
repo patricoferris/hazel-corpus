@@ -1,0 +1,1 @@
+let bigAdd : forall a -> forall b -> forall c -> a -> b -> c = typfun a -> typfun b -> typfun c -> fun l1 -> fun l2 -> let add = fun (l1, l2) -> let f = fun a -> fun x -> map(fun x -> x + a)(x) in let base = hd(L1) in let args = l2 in let (_, res) = fold_left(f)(base)(args) in res in removeZero(add(padZero(l1)(l2))) in ?
