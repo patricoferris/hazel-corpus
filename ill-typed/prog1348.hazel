@@ -1,0 +1,25 @@
+type expr = 
+  + VarX
+  + VarY
+  + Sine(expr)
+  + Cosine(expr)
+  + Average(expr, expr)
+  + Times(expr, expr)
+  + Thresh(expr, expr, expr, expr)
+  + Log(expr)
+  + SumOfSquares(expr, expr, expr)
+ in let pi = *.(4.)(atan(1.)) in let eval = fun (e, x, y) -> case e 
+  | VarX => x
+  | VarY => y
+  | Sine(e1) => sin(*.(pi)(eval((e1, x, y))))
+  | Cosine(e1) => cos(*.(pi)(eval((e1, x, y))))
+  | Average(e1, e2) => /.(+.(eval((e1, x, y)))(eval((e2, x, y))))(2.)
+  | Times(e1, e2) => *.(eval((e1, x, y)))(eval((e2, x, y)))
+  | Thresh(e1, e2, e3, e4) =>
+      if eval((e1, x, y)) < eval((e2, x, y)) then eval((e3, x, y)) else eval((e4, x, y))
+  | ModF(e1) => case modf(*.(eval((e1, x, y)))(10)) 
+  | (f, i) => f
+end
+| SumOfSquares(e1, e2, e3) =>
+    /.(+.(+.(eval((e1, x, y)) ** 2.)(eval((e2, x, y)) ** 2.))(eval((e3, x, y)) ** 2.))(3.)
+end in ?

@@ -1,0 +1,11 @@
+type expr = 
+  + VarX
+  + VarY
+  + Sine(expr)
+  + Cosine(expr)
+  + Average(expr, expr)
+  + Times(expr, expr)
+  + Thresh(expr, expr, expr, expr)
+  + Squares(expr, expr)
+  + Volume(expr, expr, expr)
+ in let buildSquares : forall a -> forall b -> a -> b = typfun a -> typfun b -> fun e -> Squares(e) in ?

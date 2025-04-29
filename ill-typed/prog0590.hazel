@@ -1,0 +1,11 @@
+type expr = 
+  + VarX
+  + VarY
+  + Sine(expr)
+  + Cosine(expr)
+  + Average(expr, expr)
+  + Times(expr, expr)
+  + Thresh(expr, expr, expr, expr)
+  + Acossin(expr, expr)
+  + Crazy(expr, expr)
+ in let buildCrazy = fun (e1, e2, e3) -> Crazy((e1, e2, e3)) in ?

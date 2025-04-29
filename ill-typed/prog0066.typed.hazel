@@ -1,0 +1,15 @@
+type expr = 
+  + VarX
+  + VarY
+  + Sine(expr)
+  + Cosine(expr)
+  + Average(expr, expr)
+  + Times(expr, expr)
+  + Thresh(expr, expr, expr, expr)
+ in let build : ? -> expr = fun (rand, depth) -> if depth == 0 then let num = rand((0, 2)) in case num 
+  | 0 => VarX
+  | _ => VarY
+end else let num = rand((0, 5)) in case num 
+  | 0 => BuildSine(build((rand, depth - 1)))
+  | _ => Cosine(build((rand, depth - 1)))
+end in ?

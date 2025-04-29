@@ -1,0 +1,12 @@
+type expr = 
+  + VarX
+  + VarY
+  + Sine(expr)
+  + Cosine(expr)
+  + Average(expr, expr)
+  + Times(expr, expr)
+  + Thresh(expr, expr, expr, expr)
+ in let exprToString = fun e -> case e 
+  | VarX(x) => printf("%s")(x)
+  | VarY(y) => printf("%s")(y)
+end in ?

@@ -1,0 +1,11 @@
+type expr = 
+  + VarX
+  + VarY
+  + Sine(expr)
+  + Cosine(expr)
+  + Average(expr, expr)
+  + Times(expr, expr)
+  + Thresh(expr, expr, expr, expr)
+  + Cube(expr, expr)
+  + Square(expr)
+ in let sampleExpr1 = Thresh((VarX, VarY, VarX, Cube(Times((Sine(VarX), Cosine(Average((VarX, VarY)))))))) in ?

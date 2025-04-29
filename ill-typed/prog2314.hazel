@@ -1,0 +1,12 @@
+type expr = 
+  + VarX
+  + VarY
+  + Sine(expr)
+  + Cosine(expr)
+  + Average(expr, expr)
+  + Times(expr, expr)
+  + Thresh(expr, expr, expr, expr)
+  + Percent(expr)
+  + Negate(expr)
+  + SumPercent(expr, expr, expr)
+ in let buildSumPercent = fun e -> SumPercent(e) in ?

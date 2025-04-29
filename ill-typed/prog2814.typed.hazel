@@ -1,0 +1,11 @@
+type expr = 
+  + VarX
+  + VarY
+  + Sine(expr)
+  + Cosine(expr)
+  + Average(expr, expr)
+  + Times(expr, expr)
+  + Thresh(expr, expr, expr, expr)
+  + Power(expr)
+  + KellysOp(expr, expr, expr, expr)
+ in let buildKellysOp : forall d -> ? -> d = typfun d -> fun (a, b, a_more) -> KellysOp((a, b, a_more)) in ?

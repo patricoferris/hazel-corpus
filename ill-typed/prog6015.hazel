@@ -1,0 +1,11 @@
+type expr = 
+  + VarX
+  + VarY
+  + Sine(expr)
+  + Cosine(expr)
+  + Average(expr, expr)
+  + Times(expr, expr)
+  + Thresh(expr, expr, expr, expr)
+  + Square(expr, expr)
+  + Exponential(expr, expr)
+ in let buildSquare = fun e -> Square(e) in ?

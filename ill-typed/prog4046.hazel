@@ -1,0 +1,14 @@
+let pi = *.(4.)(atan(1.)) in type expr = 
+  + VarX
+  + VarY
+  + Sine(expr)
+  + Cosine(expr)
+  + Average(expr, expr)
+  + Times(expr, expr)
+  + Thresh(expr, expr, expr, expr)
+ in let eval = fun (e, x, y) -> case e 
+  | VarX => x
+  | VarY => y
+  | Sine(e) => sin(*.(pi)(eval((e, x, y))))
+  | Cosine(e) => cos(*.(pi)(eval((e, x, y))))
+end in let _ = eval((Sine(Varx), 1, 1)) in ?

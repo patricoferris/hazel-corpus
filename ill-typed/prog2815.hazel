@@ -1,0 +1,23 @@
+type expr = 
+  + VarX
+  + VarY
+  + Sine(expr)
+  + Cosine(expr)
+  + Average(expr, expr)
+  + Times(expr, expr)
+  + Thresh(expr, expr, expr, expr)
+  + Power(expr)
+  + KellysOp(expr, expr, expr, expr)
+ in let pi = *.(4.)(atan(1.)) in let eval = fun (e, x, y) -> case e 
+  | VarX => x
+  | VarY => y
+  | Sine(e) => sin(*.(pi)(eval((e, x, y))))
+  | Cosine(e) => cos(*.(pi)(eval((e, x, y))))
+  | Average(e1, e2) => /.(+.(eval((e1, x, y)))(eval((e2, x, y))))(2.)
+  | Times(e1, e2) => *.(eval((e1, x, y)))(eval((e2, x, y)))
+  | Thresh(a, b, a_less, b_less) =>
+      if eval((a, x, y)) < eval((b, x, y)) then eval((a_less, x, y)) else eval((b_less, x, y))
+  | Power(e) => *.(eval((e, x, y)))(eval((e, x, y)))
+  | KellysOp(a, b, a_more) =>
+      if eval((a, x, y)) > eval((b, x, y)) then eval((a_more, x, y)) else 0.
+end in ?

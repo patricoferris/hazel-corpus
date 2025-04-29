@@ -1,0 +1,18 @@
+let pi = *.(4.)(atan(1.)) in type expr = 
+  + VarX
+  + VarY
+  + Sine(expr)
+  + Cosine(expr)
+  + Average(expr, expr)
+  + Times(expr, expr)
+  + Thresh(expr, expr, expr, expr)
+ in let eval = fun (e, x, y) -> case e 
+  | VarX => x
+  | VarY => y
+  | Sine(e) => sin(*.(pi)(eval((e, x, y))))
+  | Cosine(e) => cos(*.(pi)(eval((e, x, y))))
+  | Average(e1, e2) => /.(+.(eval((e1, x, y)))(eval((e2, x, y))))(2.)
+  | Times(e1, e2) => *.(eval((e1, x, y)))(eval((e2, x, y)))
+  | Thresh(e1, e2, e3, e4) =>
+      if eval((e1, x, y)) < eval((e2, x, y)) then eval((e3, x, y)) else eval((e4, x, y))
+end in let _ = eval((NewExprA((VarX, Vary)), 1., -1.)) in ?

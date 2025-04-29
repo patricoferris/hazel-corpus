@@ -1,0 +1,24 @@
+type expr = 
+  + VarX
+  + VarY
+  + Sine(expr)
+  + Cosine(expr)
+  + Average(expr, expr)
+  + Times(expr, expr)
+  + Thresh(expr, expr, expr, expr)
+  + FiboPlus(expr, expr, expr)
+  + TheThing(expr, expr, expr)
+ in let pi = *.(4.)(atan(1.)) in let eval = fun (e, x, y) -> case e 
+  | VarX => x
+  | VarY => y
+  | Sine(ex) => sin(*.(pi)(eval((ex, x, y))))
+  | Cosine(ex) => cos(*.(pi)(eval((ex, x, y))))
+  | Average(ex1, ex2) => /.(+.(eval((ex1, x, y)))(eval((ex2, x, y))))(2.)
+  | Times(ex1, ex2) => *.(eval((ex1, x, y)))(eval((ex2, x, y)))
+  | Thresh(ex1, ex2, ex3, ex4) =>
+      if eval((ex1, x, y)) < eval((ex2, x, y)) then eval((ex3, x, y)) else eval((ex4, x, y))
+  | FiboPlus(ex1, ex2, ex3, ex4, ex5) =>
+      *.(*.(eval((ex1, x, y)))(+.(eval((ex1, x, y)))(eval((ex2, x, y)))))(+.(+.(eval((ex1, x, y)))(eval((ex2, x, y))))(eval((ex3, x, y))))
+  | TheThing(ex1, ex2, ex3) =>
+      /.(*.(*.(eval((ex1, x, y)))(sin(*.(pi)(eval((ex2, x, y))))))(cos(*.(pi)(eval((ex3, x, y))))))(2.)
+end in ?

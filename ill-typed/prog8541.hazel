@@ -1,0 +1,17 @@
+type expr = 
+  + VarX
+  + VarY
+  + Sine(expr)
+  + Cosine(expr)
+  + Average(expr, expr)
+  + Times(expr, expr)
+  + Thresh(expr, expr, expr, expr)
+ in let eval = fun (e, x, y) -> case e 
+  | VarX(x') => printf("%s")(x)
+  | VarY(y') => printf("%s")(y)
+  | Sine(sin) => printf("sin(%s)")(sin)
+  | Cosine(cos) => printf("cos(%s)")(cos)
+  | Average(ave) => printf("((%s+%s)/2)")(ave)
+  | Times(t) => printf("%s*%s")(t)
+  | Thresh(th) => printf("(%s<*%s?%s:%s)")(th)
+end in ?

@@ -1,0 +1,9 @@
+type expr = 
+  + VarX
+  + VarY
+  + Sine(expr)
+  + Cosine(expr)
+  + Average(expr, expr)
+  + Times(expr, expr)
+  + Thresh(expr, expr, expr, expr)
+ in let buildAverage : ? -> expr = fun (e1, e2) -> Average((e1, e2)) in let buildCosine : expr -> expr = fun e -> Cosine(e) in let buildSine : expr -> expr = fun e -> Sine(e) in let buildThresh : ? -> expr = fun (a, b, a_less, b_less) -> Thresh((a, b, a_less, b_less)) in let buildTimes : ? -> expr = fun (e1, e2) -> Times((e1, e2)) in let buildY : unit -> expr = fun () -> VarY in let build : ? -> expr = fun (rand, depth) -> let case = rand((0, 6)) in ? in ?

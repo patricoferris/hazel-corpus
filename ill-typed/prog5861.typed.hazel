@@ -1,0 +1,17 @@
+type expr = 
+  + VarX
+  + VarY
+  + Sine(expr)
+  + Cosine(expr)
+  + Average(expr, expr)
+  + Times(expr, expr)
+  + Thresh(expr, expr, expr, expr)
+ in let exprToString : expr -> Float = fun e -> case e 
+  | VarX(x) => x
+  | VarY(y) => y
+  | Sine(e1) => sin(e1)
+  | Cosine(e1) => cos(e1)
+  | Average(e1, e2) => e1 + e2 / 2
+  | Times(e1, e2) => e1 * e2
+  | Thresh(e1, e2, e3, e4) => e1 * e2 * e3 * e4
+end in ?

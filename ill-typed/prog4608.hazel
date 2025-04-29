@@ -1,0 +1,13 @@
+type expr = 
+  + VarX
+  + VarY
+  + Sine(expr)
+  + Cosine(expr)
+  + Average(expr, expr)
+  + Times(expr, expr)
+  + Thresh(expr, expr, expr, expr)
+ in let buildSine = fun e -> Sine(e) in let buildX = fun () -> VarX in let buildY = fun () -> VarY in let eval = fun (e, x, y) -> case e 
+  | VarX => buildX
+  | VarY => buildY
+  | Sine => buildSine(e)
+end in ?

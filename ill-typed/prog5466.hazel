@@ -1,0 +1,20 @@
+type expr = 
+  + VarX
+  + VarY
+  + Sine(expr)
+  + Cosine(expr)
+  + Average(expr, expr)
+  + Times(expr, expr)
+  + Thresh(expr, expr, expr, expr)
+ in let exprToString = fun e -> case e 
+  | VarX => "x"
+  | VarY => "y"
+  | Sine(n) => ^("sin(")(^(exprToString(n))(")"))
+  | Cosine(n) => ^("cos(")(^(exprToString(n))(")"))
+  | Average(n) =>
+      let (x, y) = n in ^("((")(^(exprToString(x))(^("+")(^(exprToString(y))(")/2)"))))
+  | Times(n) =>
+      let (x, y) = n in ^("((")(^(exprToString(x))(^("*")(^(exprToString(y))(")"))))
+  | Thresh(n) =>
+      let (x, y, z, w) = n in ^("(")(^(exprToString(x))(^("<")(^(exprToString(y))(^("?")(^(exprToString(z))(^(":")(exprToString(w))))))))
+end in ?

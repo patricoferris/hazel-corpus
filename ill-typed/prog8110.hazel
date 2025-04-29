@@ -1,0 +1,11 @@
+type expr = 
+  + VarX
+  + VarY
+  + Sine(expr)
+  + Cosine(expr)
+  + Half(expr)
+  + Average(expr, expr)
+  + Times(expr, expr)
+  + Divadd(expr, expr, expr)
+  + Thresh(expr, expr, expr, expr)
+ in let sampleExpr3 = Half(Divadd((VarX, VaryX, VarY))) in ?

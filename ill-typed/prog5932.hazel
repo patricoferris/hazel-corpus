@@ -1,0 +1,19 @@
+type expr = 
+  + VarX
+  + VarY
+  + Sine(expr)
+  + Cosine(expr)
+  + Average(expr, expr)
+  + Times(expr, expr)
+  + Thresh(expr, expr, expr, expr)
+ in let buildAverage = fun (e1, e2) -> Average((e1, e2)) in let buildCosine = fun e -> Cosine(e) in let buildSine = fun e -> Sine(e) in let buildThresh = fun (a, b, a_less, b_less) -> Thresh((a, b, a_less, b_less)) in let buildTimes = fun (e1, e2) -> Times((e1, e2)) in let buildX = fun () -> VarX in let buildY = fun () -> VarY in let build = fun (rand, depth) -> if depth == 0 then if rand(0)(1) == 0 then buildX(()) else buildY(()) else let x = rand(0)(6) in case x 
+  | 0 => buildX(())
+  | 1 => buildY(())
+  | 2 => buildSine(build((rand, depth - 1)))
+  | 3 => buildCosine(build((rand, depth - 1)))
+  | 4 => buildAverage((build((rand, depth - 1)), build((rand, depth - 1))))
+  | 5 => buildTimes((build((rand, depth - 1)), build((rand, depth - 1))))
+  | 6 =>
+      buildThresh((build((rand, depth - 1)), build((rand, depth - 1)), build((rand, depth - 1)), build((rand, depth - 1))))
+  | _ => []
+end in ?

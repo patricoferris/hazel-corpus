@@ -1,0 +1,9 @@
+type expr = 
+  + VarX
+  + VarY
+  + Sine(expr)
+  + Cosine(expr)
+  + Average(expr, expr)
+  + Times(expr, expr)
+  + Thresh(expr, expr, expr, expr)
+ in let eval = fun (e, x, y) -> failwith("to be written") in let _ = eval((Sine(Cos(Varx)), 0.5, -0.5)) in ?

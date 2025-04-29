@@ -1,0 +1,25 @@
+type expr = 
+  + VarX
+  + VarY
+  + Sine(expr)
+  + Cosine(expr)
+  + Average(expr, expr)
+  + Times(expr, expr)
+  + Thresh(expr, expr, expr, expr)
+  + Tan(expr)
+  + Sin_Avg(expr, expr, expr)
+ in let exprToString = fun e -> case e 
+  | VarX => "x"
+  | VarY => "y"
+  | Sine(a) => ^("sin(pi*")(^(exprToString(a))(")"))
+  | Cosine(a) => ^("cos(pi*")(^(exprToString(a))(")"))
+  | Average(a, b) =>
+      ^("((")(^(exprToString(a))(^("+")(^(exprToString(b))(")/2)"))))
+  | Times(a, b) => ^(exprToString(a))(^("*")(exprToString(b)))
+  | Thresh(a, b, c, d) =>
+      ^("(")(^(exprToString(a))(^("<")(^(exprToString(b))(^("?")(^(exprToString(c))(^(":")(^(exprToString(d))(")"))))))))
+  | _ => "_"
+  | Tan(a) => ^("tan(pi*")(^(exprToString(a))(")"))
+  | Sin_Avg(a, b, c) =>
+      ^("sin(pi*(")(^(exprToString(a))(^("+")(^(exprToString(b))(^(exprToString(c))(")/3)")))))
+end in let _ = exprToString(Sin_Avg((Average((VarX(()), VarY(()))), VarY(()), VarX(())))) in ?

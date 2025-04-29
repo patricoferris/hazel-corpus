@@ -1,0 +1,11 @@
+type expr = 
+  + VarX
+  + VarY
+  + Sine(expr)
+  + Cosine(expr)
+  + Average(expr, expr)
+  + Times(expr, expr)
+  + Thresh(expr, expr, expr, expr)
+  + Squares(expr)
+  + Volume(expr, expr, expr)
+ in let buildSubstract = fun (j, k) -> Volume((j, k)) in ?

@@ -1,0 +1,22 @@
+type expr = 
+  + VarX
+  + VarY
+  + Sine(expr)
+  + Cosine(expr)
+  + Average(expr, expr)
+  + Times(expr, expr)
+  + Thresh(expr, expr, expr, expr)
+  + Expn(expr, expr)
+ in let exprToString : expr -> String = fun e -> case e 
+  | VarX => "x"
+  | VarY => "y"
+  | Sine(b) => ^("sin(pi*")(^(exprToString(b))(")"))
+  | Cosine(b) => ^("cos(pi*")(^(exprToString(b))(")"))
+  | Average(a, b) =>
+      ^("((")(^(exprToString(a))(^("+")(^(exprToString(b))(")/2)"))))
+  | Times(a, b) => ^(exprToString(a))(^("*")(exprToString(b)))
+  | Thresh(a, b, c, d) =>
+      ^("(")(^(exprToString(a))(^("<")(^(exprToString(b))(^("?")(^(exprToString(c))(^(":")(^(exprToString(d))(")"))))))))
+  | Eval(a, b) => ^("(")(^(exprToString(a))(^("^")(^(exprToString(b))(")"))))
+  | _ => ""
+end in ?

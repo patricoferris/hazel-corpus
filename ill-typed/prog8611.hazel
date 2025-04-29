@@ -1,0 +1,11 @@
+type expr = 
+  + VarX
+  + VarY
+  + Sine(expr)
+  + Cosine(expr)
+  + Average(expr, expr)
+  + Times(expr, expr)
+  + Thresh(expr, expr, expr, expr)
+  + Circ(expr, expr, expr)
+  + Oscillate(expr)
+ in let buildCirc = fun (c1, c2) -> Circ((c1, c2)) in ?

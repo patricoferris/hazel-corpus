@@ -1,0 +1,11 @@
+type expr = 
+  + VarX
+  + VarY
+  + Sine(expr)
+  + Cosine(expr)
+  + Average(expr, expr)
+  + Times(expr, expr)
+  + Thresh(expr, expr, expr, expr)
+  + Circ(expr, expr)
+  + Oscillate(expr)
+ in let buildCirc : forall a -> forall b -> a -> b = typfun a -> typfun b -> fun c1 -> Circ(c1) in ?

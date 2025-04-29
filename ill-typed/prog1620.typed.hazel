@@ -1,0 +1,12 @@
+type expr = 
+  + VarX
+  + VarY
+  + Sine(expr)
+  + Cosine(expr)
+  + Average(expr, expr)
+  + Times(expr, expr)
+  + Thresh(expr, expr, expr, expr)
+ in let exprToString : forall a -> forall b -> a -> b = typfun a -> typfun b -> fun e -> let acc = fun curr -> fun result -> case curr 
+  | VarX(x) => sprintf("%s")(x)
+  | VarY(y) => sprintf("%s")(y)
+end in acc(e)(exprToString)(VarX) in ?

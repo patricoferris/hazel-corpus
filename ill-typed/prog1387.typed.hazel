@@ -1,0 +1,17 @@
+type expr = 
+  + VarX
+  + VarY
+  + Sine(expr)
+  + Cosine(expr)
+  + Average(expr, expr)
+  + Times(expr, expr)
+  + Thresh(expr, expr, expr, expr)
+ in let exprToString : forall a -> expr -> a = typfun a -> fun e -> case e 
+  | VarX => printf("A")
+  | VarY => printf("A")
+  | Sine => printf("A")
+  | Cosine => printf("A")
+  | Average => printf("A")
+  | Times => printf("A")
+  | Thresh => printf("A")
+end in ?

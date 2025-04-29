@@ -1,0 +1,11 @@
+type expr = 
+  + VarX
+  + VarY
+  + Sine(expr)
+  + Cosine(expr)
+  + Average(expr, expr)
+  + Times(expr, expr)
+  + Thresh(expr, expr, expr, expr)
+  + Op1(expr)
+  + Op2(expr, expr, expr)
+ in let buildOp2 : forall e -> ? -> e = typfun e -> fun (a, b, a_less, b_less) -> Op2((a, b, a_less, b_less)) in ?
