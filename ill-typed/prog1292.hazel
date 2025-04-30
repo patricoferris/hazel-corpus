@@ -11,14 +11,14 @@ type expr =
  in let exprToString = fun e -> case e 
   | VarX => "x"
   | VarY => "y"
-  | Sine(v) => ^("sin(pi*")(^(exprToString(v))(")"))
-  | Cosine(v) => ^("cos(pi*")(^(exprToString(v))(")"))
+  | Sine(v) => "sin(pi*" ++ exprToString(v) ++ ")"
+  | Cosine(v) => "cos(pi*" ++ exprToString(v) ++ ")"
   | Average(v, w) =>
-      ^("((")(^(exprToString(v))(^("+")(^(exprToString(w))(")/2)"))))
-  | Times(v, w) => ^(exprToString(v))(^("*")(exprToString(w)))
+      "((" ++ exprToString(v) ++ "+" ++ exprToString(w) ++ ")/2)"
+  | Times(v, w) => exprToString(v) ++ "*" ++ exprToString(w)
   | Thresh(v, w, x, y) =>
-      ^(exprToString(v))(^("<")(^(exprToString(w))(^("?")(^(exprToString(x))(^(":")(^(exprToString(y))(")")))))))
-  | Plus(v) => ^("(")(^(exprToString(v))(^("+"(exprToString)(w))(")")))
+      exprToString(v) ++ "<" ++ exprToString(w) ++ "?" ++ exprToString(x) ++ ":" ++ exprToString(y) ++ ")"
+  | Plus(v) => "(" ++ exprToString(v) ++ "+"(exprToString)(w) ++ ")"
   | Cube(v, w, x) =>
-      ^("(")(^(exprToString(v))(^("*")(^(exprToString(w))(^("*")(exprToString(x))))))
+      "(" ++ exprToString(v) ++ "*" ++ exprToString(w) ++ "*" ++ exprToString(x)
 end in ?

@@ -10,15 +10,15 @@ type expr =
  in let exprToString : expr -> String = fun e -> case e 
   | VarX => "x"
   | VarY => "y"
-  | Sine(x) => ^("sin(pi*")(^(exprToString(x))(")"))
-  | Cosine(x) => ^("cos(pi*")(^(exprToString(x))(")"))
+  | Sine(x) => "sin(pi*" ++ exprToString(x) ++ ")"
+  | Cosine(x) => "cos(pi*" ++ exprToString(x) ++ ")"
   | Average(x, y) =>
-      ^("((")(^(exprToString(x))(^("+")(^(exprToString(y))(")/2)"))))
-  | Times(x, y) => ^(exprToString(x))(^("*")(exprToString(y)))
+      "((" ++ exprToString(x) ++ "+" ++ exprToString(y) ++ ")/2)"
+  | Times(x, y) => exprToString(x) ++ "*" ++ exprToString(y)
   | Thresh(x, y, z, s) =>
-      ^("(")(^(exprToString(x))(^("<")(^(exprToString(y))(^("?")(^(exprToString(z))(^(":")(^(exprToString(s))(")"))))))))
+      "(" ++ exprToString(x) ++ "<" ++ exprToString(y) ++ "?" ++ exprToString(z) ++ ":" ++ exprToString(s) ++ ")"
   | Trip(x, y, z) =>
-      ^("((")(^(exprToString(x))(^("/30.0)+")(^(exprToString(y))(^("/")(^(exprToString(z))(")"))))))
+      "((" ++ exprToString(x) ++ "/30.0)+" ++ exprToString(y) ++ "/" ++ exprToString(z) ++ ")"
   | Greater(x, y) =>
-      ^("(")(^(exprToString(x))(^(">")(^(exprToString(y))(^("?")(^(exprToString(x))(^(":")(^(exprToString(y))(")"))))))))
+      "(" ++ exprToString(x) ++ ">" ++ exprToString(y) ++ "?" ++ exprToString(x) ++ ":" ++ exprToString(y) ++ ")"
 end in ?

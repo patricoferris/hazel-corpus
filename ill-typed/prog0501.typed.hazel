@@ -7,11 +7,11 @@ type expr =
   + Times(expr, expr)
   + Thresh(expr, expr, expr, expr)
  in let ets : forall a -> forall b -> expr -> a -> b = typfun a -> typfun b -> fun e -> fun s -> case e 
-  | VarX => ets@<a>@<b>((e, ^(s)(VarX)))
-  | VarY => ets@<a>@<b>((e, ^(s)(VarY)))
-  | Sine => ets@<a>@<b>((e, ^(s)(Sine)))
-  | Cosine => ets@<a>@<b>((e, ^(s)(Cosine)))
-  | Average => ets@<a>@<b>((e, ^(s)(Average)))
-  | Times => ets@<a>@<b>((e, ^(s)(Times)))
-  | Thresh => ets@<a>@<b>((e, ^(s)(Thresh)))
+  | VarX => ets@<a>@<b>((e, s ++ VarX))
+  | VarY => ets@<a>@<b>((e, s ++ VarY))
+  | Sine => ets@<a>@<b>((e, s ++ Sine))
+  | Cosine => ets@<a>@<b>((e, s ++ Cosine))
+  | Average => ets@<a>@<b>((e, s ++ Average))
+  | Times => ets@<a>@<b>((e, s ++ Times))
+  | Thresh => ets@<a>@<b>((e, s ++ Thresh))
 end in ?

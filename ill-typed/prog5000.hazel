@@ -9,15 +9,15 @@ type expr =
  in let exprToString = fun e -> case e 
   | VarX => "x"
   | VarY => "y"
-  | Sine(a) => ^("sin(pi*")(^(exprToString(a))(")"))
-  | Cosine(a) => ^("cos(pi*")(^(exprToString(a))(")"))
+  | Sine(a) => "sin(pi*" ++ exprToString(a) ++ ")"
+  | Cosine(a) => "cos(pi*" ++ exprToString(a) ++ ")"
   | Average(a, b) =>
-      ^("((")(^(exprToString(a))(^("+")(^(exprToString(b))(")/2)"))))
-  | Times(a, b) => ^(exprToString(a))(^("*")(exprToString(b)))
+      "((" ++ exprToString(a) ++ "+" ++ exprToString(b) ++ ")/2)"
+  | Times(a, b) => exprToString(a) ++ "*" ++ exprToString(b)
   | Thresh(a, b, c, d) =>
-      ^("(")(^(exprToString(a))(^("<")(^(exprToString(b))(^("?")(^(exprToString(c))(^(":")(^(exprToString(d))(")"))))))))
+      "(" ++ exprToString(a) ++ "<" ++ exprToString(b) ++ "?" ++ exprToString(c) ++ ":" ++ exprToString(d) ++ ")"
   | SquareAv(a, b) =>
-      ^("(")(^(exprToString(a))(^("^2 + ")(^(exprToString(b))("^2)/2"))))
+      "(" ++ exprToString(a) ++ "^2 + " ++ exprToString(b) ++ "^2)/2"
   | MultHalf(a, b, c) =>
-      ^("(")(^(exprToString(a))(^("*")(^(exprToString(b))(^("*")(^(exprToString(c))(")/2"))))))
+      "(" ++ exprToString(a) ++ "*" ++ exprToString(b) ++ "*" ++ exprToString(c) ++ ")/2"
 end in ?

@@ -9,15 +9,15 @@ type expr =
  in let exprToString = fun e -> case e 
   | [] => []
   | h :: e' => case h 
-  | VarX => ^("x")(exprToString(e'))
-  | VarY => ^("y")(exprToString(e'))
-  | Sine => ^("sin(pi*")(^(exprToString(e'))(")"))
-  | Cosine => ^("cos(pi*")(^(exprToString(e'))(")"))
+  | VarX => "x" ++ exprToString(e')
+  | VarY => "y" ++ exprToString(e')
+  | Sine => "sin(pi*" ++ exprToString(e') ++ ")"
+  | Cosine => "cos(pi*" ++ exprToString(e') ++ ")"
   | Average =>
-      let (e1, e2) = h in ^("((")(^(exprToString(e1))(^("+")(^(exprToString(e2))(^(")/2)")(exprToString(e'))))))
+      let (e1, e2) = h in "((" ++ exprToString(e1) ++ "+" ++ exprToString(e2) ++ ")/2)" ++ exprToString(e')
   | Times =>
-      let (e1, e2) = h in ^(exprToString(e1))(^("*")(^(exprToString(e2))(exprToString(e'))))
+      let (e1, e2) = h in exprToString(e1) ++ "*" ++ exprToString(e2) ++ exprToString(e')
   | Thresh =>
-      let (e1, e2, e3, e4) = h in ^("(")(^(exprToString(e1))(^("<")(^(exprToString(e2))(^("?")(^(exprToString(e3))(^(":")(^(exprToString(e4))(^(")")(exprToString(e'))))))))))
+      let (e1, e2, e3, e4) = h in "(" ++ exprToString(e1) ++ "<" ++ exprToString(e2) ++ "?" ++ exprToString(e3) ++ ":" ++ exprToString(e4) ++ ")" ++ exprToString(e')
 end
 end in ?

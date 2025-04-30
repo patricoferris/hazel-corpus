@@ -9,5 +9,5 @@ type expr =
  in let exprToString = fun e -> case e 
   | VarX => "x"
   | VarY => "y"
-  | Sine => ^("sine(pi*")(^(exprToString(d))(")"))
+  | Sine => "sine(pi*" ++ exprToString(d) ++ ")"
 end in ?

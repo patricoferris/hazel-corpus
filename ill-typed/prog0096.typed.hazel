@@ -21,15 +21,15 @@ type expr =
  in let exprToString : expr -> String = fun e -> case e 
   | VarX => "x"
   | VarY => "y"
-  | Sine(a) => ^("sin(pi*")(^(exprToString(a))(")"))
-  | Cosine(a) => ^("cos(pi*")(^(exprToString(a))(")"))
+  | Sine(a) => "sin(pi*" ++ exprToString(a) ++ ")"
+  | Cosine(a) => "cos(pi*" ++ exprToString(a) ++ ")"
   | Average(a, b) =>
-      ^("((")(^(exprToString(a))(^("+")(^(exprToString(b))(")/2)"))))
-  | Times(a, b) => ^(exprToString(a))(^("*")(exprToString(b)))
+      "((" ++ exprToString(a) ++ "+" ++ exprToString(b) ++ ")/2)"
+  | Times(a, b) => exprToString(a) ++ "*" ++ exprToString(b)
   | Thresh(a, b, c, d) =>
-      ^("(")(^(exprToString(a))(^("<")(^(exprToString(b))(^("?")(^(exprToString(c))(^(":")(^(exprToString(d))(")"))))))))
+      "(" ++ exprToString(a) ++ "<" ++ exprToString(b) ++ "?" ++ exprToString(c) ++ ":" ++ exprToString(d) ++ ")"
   | _ => "_"
-  | Tan(a) => ^("tan(pi*")(^(exprToString(a))(")"))
+  | Tan(a) => "tan(pi*" ++ exprToString(a) ++ ")"
   | Arc(a, b, c) =>
-      ^("sin(pi*(")(^(exprToString(a))(^("+")(^(exprToString(b))(^(exprToString(c))(")")))))
+      "sin(pi*(" ++ exprToString(a) ++ "+" ++ exprToString(b) ++ exprToString(c) ++ ")"
 end in ?

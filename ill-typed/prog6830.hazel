@@ -9,10 +9,10 @@ type expr =
  in let exprToString = fun e -> case e 
   | VarX => "VarX"
   | VarY => "VarY"
-  | Sine => ^("Sine(")(^(exprToString(e))(")"))
-  | Cosine => ^("Cosine(")(^(exprToString(e))(")"))
-  | Average => ^("Average(")(^(exprToString(e))(")"))
-  | Times => ^("Times(")(^(exprToString(e))(")"))
+  | Sine => "Sine(" ++ exprToString(e) ++ ")"
+  | Cosine => "Cosine(" ++ exprToString(e) ++ ")"
+  | Average => "Average(" ++ exprToString(e) ++ ")"
+  | Times => "Times(" ++ exprToString(e) ++ ")"
   | Thresh(a, b, c, d) =>
-      ^("Thresh(")(^(exprToString(a))(^(",")(^(exprToString(b))(^(",")(^(exprToString(c))(^(",")(^(exprToString(d))(")"))))))))
+      "Thresh(" ++ exprToString(a) ++ "," ++ exprToString(b) ++ "," ++ exprToString(c) ++ "," ++ exprToString(d) ++ ")"
 end in ?

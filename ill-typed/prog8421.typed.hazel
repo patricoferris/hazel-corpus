@@ -9,14 +9,14 @@ type expr =
  in let exprToString : expr -> String = fun e -> case e 
   | VarX => "x"
   | VarY => "y"
-  | Sine(v) => ^("sin(pi*")(^(exprToString(v))(")"))
-  | Cosine(v) => ^("sin(pi*")(^(exprToString(v))(")"))
+  | Sine(v) => "sin(pi*" ++ exprToString(v) ++ ")"
+  | Cosine(v) => "sin(pi*" ++ exprToString(v) ++ ")"
   | Average(v, w) =>
-      ^("(")(^(exprToString(v))(^("+")(^(exprToString(w))(")/2"))))
-  | Times(v, w) => ^(exprToString(v))(^("*")(exprToString(w)))
+      "(" ++ exprToString(v) ++ "+" ++ exprToString(w) ++ ")/2"
+  | Times(v, w) => exprToString(v) ++ "*" ++ exprToString(w)
   | Thresh(v, w, x, y) =>
-      ^(exprToString(v))(^("<")(^(exprToString(w))(^("?")(^(exprToString(x))(^(":")(exprToString(y)))))))
-  | Divide(v, w) => ^(exprToString(v))(^("/")(exprToString(w)))
+      exprToString(v) ++ "<" ++ exprToString(w) ++ "?" ++ exprToString(x) ++ ":" ++ exprToString(y)
+  | Divide(v, w) => exprToString(v) ++ "/" ++ exprToString(w)
   | Super(v, w) =>
-      ^("(")(^(exprToString(v))(^("+")(^(exprToString(w))(^(") *")(exprToString(v))))))
+      "(" ++ exprToString(v) ++ "+" ++ exprToString(w) ++ ") *" ++ exprToString(v)
 end in ?

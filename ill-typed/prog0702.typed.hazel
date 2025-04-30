@@ -9,13 +9,13 @@ type expr =
  in let exprToString : expr -> String = fun e -> let expr = exprToString in case e 
   | VarX => "x"
   | VarY => "y"
-  | Sine(t) => ^("sin(pi*")(^(expr(t))(")"))
-  | Cosine(t) => ^("cos(pi*")(^(expr(t))(")"))
-  | Average(s, t) => ^("((")(^(ex(s))(^("+")(^(ex(t))(")/2)"))))
-  | Times(s, t) => ^(ex(s))(^("*")(ex(t)))
+  | Sine(t) => "sin(pi*" ++ expr(t) ++ ")"
+  | Cosine(t) => "cos(pi*" ++ expr(t) ++ ")"
+  | Average(s, t) => "((" ++ ex(s) ++ "+" ++ ex(t) ++ ")/2)"
+  | Times(s, t) => ex(s) ++ "*" ++ ex(t)
   | Thresh(s, t, u, v) =>
-      ^("(")(^(ex(s))(^("<")(^(ex(t))(^("?")(^(ex(u))(^(":")(^(ex(v))(")"))))))))
+      "(" ++ ex(s) ++ "<" ++ ex(t) ++ "?" ++ ex(u) ++ ":" ++ ex(v) ++ ")"
   | FunnyTimes(s, t, u) =>
-      ^("(floor ")(^(ex(s))(^("* ceil ")(^(ex(t))(^("*")(^(ex(u))(")"))))))
-  | Sqr(s) => ^("(")(^(ex(s))(^("*")(^(ex(s))(")"))))
+      "(floor " ++ ex(s) ++ "* ceil " ++ ex(t) ++ "*" ++ ex(u) ++ ")"
+  | Sqr(s) => "(" ++ ex(s) ++ "*" ++ ex(s) ++ ")"
 end in ?

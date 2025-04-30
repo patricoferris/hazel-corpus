@@ -9,12 +9,12 @@ type expr =
  in let exprToString = fun e -> case e 
   | VarX => "x"
   | VarY => "y"
-  | Sine(e) => ^("sin(pi*")(^(exprToString(e))(")"))
-  | Cosine(e) => ^("cos(pi*")(^(exprToString(e))(")"))
+  | Sine(e) => "sin(pi*" ++ exprToString(e) ++ ")"
+  | Cosine(e) => "cos(pi*" ++ exprToString(e) ++ ")"
   | Average(x, y) =>
-      ^("((")(^(exprToString(y))(^("+")(^(exprToString(y))(")/2)"))))
-  | Times(x, y) => ^(exprToString(x))(^("*")(exprToString(y)))
+      "((" ++ exprToString(y) ++ "+" ++ exprToString(y) ++ ")/2)"
+  | Times(x, y) => exprToString(x) ++ "*" ++ exprToString(y)
   | Thresh(w, x, y, z) =>
-      ^("(")(^(exprToString(w))(^("<")(^(exprToString(x))(^("?")(^(exprToString(y))(^(":")(exprToString(z))))))))
-  | Cotangent(e) => ^("contan(")(^(exprToString(e))(")"))
+      "(" ++ exprToString(w) ++ "<" ++ exprToString(x) ++ "?" ++ exprToString(y) ++ ":" ++ exprToString(z)
+  | Cotangent(e) => "contan(" ++ exprToString(e) ++ ")"
 end in ?

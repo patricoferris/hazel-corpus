@@ -9,11 +9,11 @@ type expr =
  in let exprToString = fun e -> let a = exprToString in case e 
   | VarX => "x"
   | VarY => "y"
-  | Sine(t) => ^("sin(pi*")(^(e(t))(")"))
-  | Cosine(t) => ^("cos(pi*")(^(e(t))(")"))
-  | Average(s, t) => ^("((")(^(e(s))(^("+")(^(e(t))(")/2)"))))
-  | Times(s, t) => ^(e(s))(^("*")(e(t)))
+  | Sine(t) => "sin(pi*" ++ e(t) ++ ")"
+  | Cosine(t) => "cos(pi*" ++ e(t) ++ ")"
+  | Average(s, t) => "((" ++ e(s) ++ "+" ++ e(t) ++ ")/2)"
+  | Times(s, t) => e(s) ++ "*" ++ e(t)
   | Thresh(s, t, u, v) =>
-      ^("(")(^(e(s))(^("<")(^(e(t))(^("?")(^(e(u))(^(":")(^(e(v))(")"))))))))
-  | Stuff(t) => ^("cos(pi*")(^("(sin(pi*")(^(e(t))(")))")))
+      "(" ++ e(s) ++ "<" ++ e(t) ++ "?" ++ e(u) ++ ":" ++ e(v) ++ ")"
+  | Stuff(t) => "cos(pi*" ++ "(sin(pi*" ++ e(t) ++ ")))"
 end in ?

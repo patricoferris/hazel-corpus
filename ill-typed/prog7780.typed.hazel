@@ -12,6 +12,6 @@ type expr =
   | Sine(e) => "sin(pi*"(exprToString)(e)(")")
   | Cosine(e) => "cos(pi*"(exprToString)(e)(")")
   | Average(x, y) =>
-      ^("(("(exprToString)(e))(^("+")(exprToString(e)(")") / 2(")")))
+      "(("(exprToString)(e) ++ "+" ++ exprToString(e)(")") / 2(")")
   | Times(e) => exprToString(e)("*")(exprToString)(e)
 end in ?

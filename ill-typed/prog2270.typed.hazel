@@ -11,8 +11,8 @@ type expr =
   | VarY => []
   | Sine(e1) => exprToString@<a>(e1)
   | Cosine(e1) => exprToString@<a>(e1)
-  | Average(e1, e2) => ^(exprToString@<a>(e1))(exprToString@<a>(e2))
-  | Times(e1, e2) => ^(exprToString@<a>(e1))(exprToString@<a>(e2))
+  | Average(e1, e2) => exprToString@<a>(e1) ++ exprToString@<a>(e2)
+  | Times(e1, e2) => exprToString@<a>(e1) ++ exprToString@<a>(e2)
   | Thresh(e1, e2, e3) =>
-      ^(exprToString@<a>(e1))(^(exprToString@<a>(e2))(exprToString@<a>(e3)))
+      exprToString@<a>(e1) ++ exprToString@<a>(e2) ++ exprToString@<a>(e3)
 end in ?

@@ -11,15 +11,15 @@ type expr =
  in let exprToString = fun e -> case e 
   | VarX => "x"
   | VarY => "y"
-  | Sine(b) => ^("sin(pi*")(^(exprToString(b))(")"))
-  | Cosine(b) => ^("cos(pi*")(^(exprToString(b))(")"))
+  | Sine(b) => "sin(pi*" ++ exprToString(b) ++ ")"
+  | Cosine(b) => "cos(pi*" ++ exprToString(b) ++ ")"
   | Average(a, b) =>
-      ^("((")(^(exprToString(a))(^("+")(^(exprToString(b))(")/2)"))))
-  | Times(a, b) => ^(exprToString(a))(^("*")(exprToString(b)))
+      "((" ++ exprToString(a) ++ "+" ++ exprToString(b) ++ ")/2)"
+  | Times(a, b) => exprToString(a) ++ "*" ++ exprToString(b)
   | Thresh(a, b, c, d) =>
-      ^("(")(^(exprToString(a))(^("<")(^(exprToString(b))(^("?")(^(exprToString(c))(^(":")(^(exprToString(d))(")"))))))))
-  | Expn(b) => ^("(0.5^")(^(exprToString(b))(")"))
+      "(" ++ exprToString(a) ++ "<" ++ exprToString(b) ++ "?" ++ exprToString(c) ++ ":" ++ exprToString(d) ++ ")"
+  | Expn(b) => "(0.5^" ++ exprToString(b) ++ ")"
   | TripMult(a, b, c) =>
-      ^("(")(^(exprToString(a))(^("*")(^(exprToString(b))(^("*")(^(exprToString(c))(")"))))))
+      "(" ++ exprToString(a) ++ "*" ++ exprToString(b) ++ "*" ++ exprToString(c) ++ ")"
   | _ => ""
 end in ?

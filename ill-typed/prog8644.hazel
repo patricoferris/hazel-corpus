@@ -11,13 +11,13 @@ type expr =
  in let exprToString = fun e -> let exp = exprToString in case e 
   | VarX => "x"
   | VarY => "y"
-  | Sine(a) => ^("sin(pi*")(^(exp(a))(")"))
-  | Cosine(a) => ^("cos(pi*")(^(exp(a))(")"))
-  | Boo(a) => ^("((")(^(exp(a))(^("+")(^(exp(a))(")/100)"))))
-  | Average(a, b) => ^("((")(^(exp(a))(^("+")(^(exp(b))(")/2)"))))
-  | Times(a, b) => ^(exp(a))(^("*")(exp(b)))
+  | Sine(a) => "sin(pi*" ++ exp(a) ++ ")"
+  | Cosine(a) => "cos(pi*" ++ exp(a) ++ ")"
+  | Boo(a) => "((" ++ exp(a) ++ "+" ++ exp(a) ++ ")/100)"
+  | Average(a, b) => "((" ++ exp(a) ++ "+" ++ exp(b) ++ ")/2)"
+  | Times(a, b) => exp(a) ++ "*" ++ exp(b)
   | Thresh(a, b, c, d) =>
-      ^("(")(^(exp(a))(^("<")(^(exp(b))(^("?")(^(exp(c))(^(":")(^(exp(d))(")"))))))))
+      "(" ++ exp(a) ++ "<" ++ exp(b) ++ "?" ++ exp(c) ++ ":" ++ exp(d) ++ ")"
   | Hoi(a, b, c) =>
-      ^("sin(pi*")(^(exp(a))(^(")*cos(pi*")(^(exp(b))(^(")/(")(^(exp(c))(")"))))))
+      "sin(pi*" ++ exp(a) ++ ")*cos(pi*" ++ exp(b) ++ ")/(" ++ exp(c) ++ ")"
 end in ?
