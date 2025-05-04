@@ -1,0 +1,12 @@
+type expr = 
+  + VarX
+  + VarY
+  + Sine(expr)
+  + Cosine(expr)
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
+  + Tan(expr)
+  + Sin_Avg((expr, expr, expr))
+ in
+let x : expr = Sin_Avg((VarX(()), VarY(()), VarX(()))) in ?

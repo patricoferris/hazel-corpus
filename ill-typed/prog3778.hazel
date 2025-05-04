@@ -1,6 +1,8 @@
-let f = fun a -> fun x -> let intlist = fun l -> if l < 10 then [l] else @(intlist(l / 10))([int_mod((l, 10))]) in case x 
+let f = fun a -> fun x -> let intlist = fun l -> if l < 10 then [l] else @(intlist(l / 10))([int_mod((l, 10))]) in
+                          case x 
   | (z, y) => case a 
   | [] => let sum = z + y in intlist(sum)
   | h :: t => let sum = h + z + y in @(intlist(sum))(t)
 end
-end in let _ = f([]) in ?
+end in
+let _ = f([]) in ?

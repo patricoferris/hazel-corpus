@@ -4,16 +4,19 @@ type expr =
   + Sine(expr)
   + Cosine(expr)
   + Tan(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Thresh(expr, expr, expr, expr)
- in type expr = 
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
+ in
+type expr = 
   + VarX
   + VarY
   + Sine(expr)
   + Cosine(expr)
   + Tangent(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Thresh(expr, expr, expr, expr)
- in let sampleExpr1 = Thresh((VarX, VarY, VarX, Times((Tan(Sine(VarX)), Cosine(Average((VarX, VarY))))))) in ?
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
+ in
+let sampleExpr1 = Thresh((VarX, VarY, VarX, Times((Tan(Sine(VarX)), Cosine(Average((VarX, VarY))))))) in
+?

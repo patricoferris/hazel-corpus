@@ -1,8 +1,10 @@
 let lastListElement : forall a -> [a] -> a = typfun a -> fun n -> case n 
-  | [] => failwith("ERROR: List must be of size 1 or greater")
+  | [] => failwith@<a>("ERROR: List must be of size 1 or greater")
   | [x] => x
   | x :: y => lastListElement@<a>(y)
-end in let catLists : Bool -> [Bool] -> [Bool] = fun x -> fun y -> if not(x) == [] then case x 
+end in
+let catLists : bool -> [bool] -> [bool] = fun x -> fun y -> if not(x) == [] then case x 
   | [x] => x :: y
-  | h :: t => catLists(t)(lastListElement@<a>(x) :: y)
-end else if x == [] then y else ? in ?
+  | h :: t => catLists(t)(lastListElement(x) :: y)
+end else if x == [] then y else ? in
+?

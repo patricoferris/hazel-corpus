@@ -4,11 +4,12 @@ type expr =
   + Sine(expr)
   + Cosine(expr)
   + Square(expr)
-  + Hoi(expr, expr, expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Thresh(expr, expr, expr, expr)
- in let exprToString = fun e -> let exp = exprToString in case e 
+  + Hoi((expr, expr, expr))
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
+ in
+let exprToString = fun e -> let exp = exprToString in case e 
   | VarX => "x"
   | VarY => "y"
   | Sine(a) => "sin(pi*" ++ exp(a) ++ ")"
@@ -20,4 +21,5 @@ type expr =
       "(" ++ exp(a) ++ "<" ++ exp(b) ++ "?" ++ exp(c) ++ ":" ++ exp(d) ++ ")"
   | Hoi(a, b, c) =>
       "sin(pi*" ++ exp(a) ++ ")*cos(pi*" ++ exp(b) ++ ")/(" ++ exp(c) ++ ")"
-end in ?
+end in
+?

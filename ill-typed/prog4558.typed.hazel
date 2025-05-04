@@ -3,9 +3,11 @@ type expr =
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Thresh(expr, expr, expr, expr)
-  + Special1(expr, expr, expr)
-  + Special2(expr, expr)
- in let buildSpecial1 : forall c -> ? -> c = typfun c -> fun (e1, e2) -> Special1((e1, e2)) in ?
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
+  + Special1((expr, expr, expr))
+  + Special2((expr, expr))
+ in
+let buildSpecial1 : forall c -> (a, b) -> c = typfun c -> fun (e1, e2) -> Special1((e1, e2)) in
+?

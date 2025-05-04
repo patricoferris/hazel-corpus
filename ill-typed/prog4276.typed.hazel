@@ -1,0 +1,12 @@
+type expr = 
+  + VarX
+  + VarY
+  + Sine(expr)
+  + Cosine(expr)
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
+  + Nom((expr, expr, expr))
+  + Squa(expr)
+ in
+let sampleExpr2 : expr = Nom((VarX, VarY, Sin(VarX))) in ?

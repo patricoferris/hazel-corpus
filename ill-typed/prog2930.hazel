@@ -3,11 +3,12 @@ let pi = 4. *. atan(1.) in type expr =
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Thresh(expr, expr, expr, expr)
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
   + Half(expr)
- in let eval = fun (e, x, y) -> case e 
+ in
+let eval = fun (e, x, y) -> case e 
   | VarX => x
   | VarY => y
   | Sine(a) => sin(pi *. eval((a, x, y)))
@@ -17,4 +18,5 @@ let pi = 4. *. atan(1.) in type expr =
   | Thresh(a, b, c, d) =>
       if eval((a, x, y)) < eval((b, x, y)) then eval((c, x, y)) else eval((d, x, y))
   | Half(a) => 0.5 *. eval((a, x, y))
-end in let _ = eval((Half, 0.3, 0.3)) in ?
+end in
+let _ = eval((Half, 0.3, 0.3)) in ?

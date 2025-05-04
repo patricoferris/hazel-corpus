@@ -3,15 +3,17 @@ type expr =
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Thresh(expr, expr, expr, expr)
- in let exprToString : forall a -> expr -> a = typfun a -> fun e -> case e 
-  | VarX => printf("A")
-  | VarY => printf("A")
-  | Sine => printf("A")
-  | Cosine => printf("A")
-  | Average => printf("A")
-  | Times => printf("A")
-  | Thresh => printf("A")
-end in ?
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
+ in
+let exprToString : forall a -> expr -> a = typfun a -> fun e -> case e 
+  | VarX => printf@<a>("A")
+  | VarY => printf@<a>("A")
+  | Sine => printf@<a>("A")
+  | Cosine => printf@<a>("A")
+  | Average => printf@<a>("A")
+  | Times => printf@<a>("A")
+  | Thresh => printf@<a>("A")
+end in
+?

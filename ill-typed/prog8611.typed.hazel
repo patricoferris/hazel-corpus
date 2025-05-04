@@ -3,9 +3,11 @@ type expr =
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Thresh(expr, expr, expr, expr)
-  + Circ(expr, expr, expr)
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
+  + Circ((expr, expr, expr))
   + Oscillate(expr)
- in let buildCirc : forall c -> ? -> c = typfun c -> fun (c1, c2) -> Circ((c1, c2)) in ?
+ in
+let buildCirc : forall c -> (a, b) -> c = typfun c -> fun (c1, c2) -> Circ((c1, c2)) in
+?

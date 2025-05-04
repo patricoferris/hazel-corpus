@@ -3,22 +3,24 @@ type expr =
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Divide(expr, expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Hello(expr, expr, expr)
-  + Thresh(expr, expr, expr, expr)
- in type expr = 
+  + Divide((expr, expr))
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Hello((expr, expr, expr))
+  + Thresh((expr, expr, expr, expr))
+ in
+type expr = 
   + VarX
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Hello1(expr, expr, expr)
-  + Thresh(expr, expr, expr, expr)
-  + Hello2(expr, expr, expr, expr)
- in let pi = 4. *. atan(1.) in let eval = fun (e, x, y) -> case e 
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Hello1((expr, expr, expr))
+  + Thresh((expr, expr, expr, expr))
+  + Hello2((expr, expr, expr, expr))
+ in
+let pi = 4. *. atan(1.) in let eval = fun (e, x, y) -> case e 
   | VarX => x
   | VarY => y
   | Sine(e) => sin(pi *. eval((e, x, y)))
@@ -32,4 +34,5 @@ type expr =
       if eval((e1, x, y)) < eval((e2, x, y)) then eval((e3, x, y)) else eval((e4, x, y))
   | Hello2(e1, e2, e3, e4) =>
       if eval((e1, x, y)) < eval((e2, x, y)) then eval((e4, x, y)) else eval((e3, x, y))
-end in ?
+end in
+?

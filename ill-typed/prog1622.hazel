@@ -3,10 +3,12 @@ type expr =
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Thresh(expr, expr, expr, expr)
- in let exprToString = fun e -> let acc = fun curr -> fun result -> case curr 
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
+ in
+let exprToString = fun e -> let acc = fun curr -> fun result -> case curr 
   | VarX => sprintf("x")
   | VarY(y) => sprintf("y")
-end in acc(e)("")(exprToString)(VarX) in ?
+end in acc(e)("")(exprToString)(VarX) in
+?

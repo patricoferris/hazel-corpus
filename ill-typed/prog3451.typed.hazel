@@ -3,11 +3,14 @@ type expr =
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Thresh(expr, expr, expr, expr)
- in let buildAverage : ? -> expr = fun (e1, e2) -> Average((e1, e2)) in let eval : ? -> expr = fun (e, x, y) -> case e 
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
+ in
+let buildAverage : (expr, expr) -> expr = fun (e1, e2) -> Average((e1, e2)) in 
+let eval : (expr, expr, expr) -> expr = fun (e, x, y) -> case e 
   | VarX => let vx = x in vx
   | VarY => let vy = y in vy
   | Average => buildAverage((vx, vy))
-end in ?
+end in
+?

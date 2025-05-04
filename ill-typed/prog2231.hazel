@@ -3,9 +3,10 @@ type expr =
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Thresh(expr, expr, expr, expr)
-  + SixtyNine(expr, expr)
-  + TheThing(expr, expr, expr)
- in let buildSixtyNine = fun e1 -> SixtyNine(e1) in ?
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
+  + SixtyNine((expr, expr))
+  + TheThing((expr, expr, expr))
+ in
+let buildSixtyNine = fun e1 -> SixtyNine(e1) in ?

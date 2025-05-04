@@ -1,7 +1,9 @@
 type tree = 
   + Leaf(Int)
-  + Node(tree, tree)
- in let _ = let foo = fun t -> case t 
+  + Node((tree, tree))
+ in
+let _ = let foo = fun t -> case t 
   | Leaf(n) => 1
   | Node(t1, t2) => foo(t1) + foo(t2)
-end in foo(Node((Node((Leaf(1), Leaf(2))), Leaf3))) in ?
+end in foo(Node((Node((Leaf(1), Leaf(2))), Leaf3))) in
+?

@@ -3,22 +3,24 @@ type expr =
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Thresh(expr, expr, expr, expr)
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
   + SquareRoot(expr)
-  + FunckyCube(expr, expr, expr)
- in type expr = 
+  + FunckyCube((expr, expr, expr))
+ in
+type expr = 
   + VarX
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Thresh(expr, expr, expr, expr)
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
   + SquareRoot(expr)
-  + FunckyRoot(expr, expr, expr)
- in let exprToString = fun e -> case e 
+  + FunckyRoot((expr, expr, expr))
+ in
+let exprToString = fun e -> case e 
   | VarX => "x"
   | VarY => "y"
   | Sine(e') => "sin(pi*" ++ exprToString(e') ++ ")"
@@ -31,4 +33,5 @@ type expr =
   | SquareRoot(e') => "sqrt(" ++ exprToString(e') ++ ")"
   | FunckyCube(e1, e2, e3) =>
       "sqrt(sqrt(" ++ exprToString(e1) ++ ")+sqrt(" ++ exprToString(e2) ++ ")+sqrt(" ++ exprToString(e3) ++ "))"
-end in ?
+end in
+?

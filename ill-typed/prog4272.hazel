@@ -3,9 +3,10 @@ type expr =
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Thresh(expr, expr, expr, expr)
-  + Nom(expr, expr, expr)
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
+  + Nom((expr, expr, expr))
   + Squa(expr)
- in let sampleExpr2 = Times((Squa(Nom((VarX, VarY, VarX))), Sine(Varx))) in ?
+ in
+let sampleExpr2 = Times((Squa(Nom((VarX, VarY, VarX))), Sine(Varx))) in ?

@@ -3,12 +3,15 @@ type expr =
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Thresh(expr, expr, expr, expr)
- in let buildCosine : expr -> expr = fun e -> Cosine(e) in let eval : forall a -> forall b -> ? -> a -> b = typfun a -> typfun b -> fun (e, x, y) -> let evalhelper = fun e -> fun x -> fun y -> case e 
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
+ in
+let buildCosine : expr -> expr = fun e -> Cosine(e) in let eval : forall a -> forall b -> (expr, (a -> b), (a -> b)) -> a -> b = typfun a -> typfun b -> fun (e, x, y) -> 
+                                                       let evalhelper = fun e -> fun x -> fun y -> case e 
   | VarX => x
   | VarY => y
-  | Sine(p1) => evalhelper(Sine)(p1)(x)(y)
-  | Cosine(p1) => evalhelper(buildCosine)(p1)(x)(y)
-end in evalhelper(e)(x)(y) in ?
+  | Sine(p1) => evalhelper@<a>@<b>(Sine)(p1)(x)(y)
+  | Cosine(p1) => evalhelper@<a>@<b>(buildCosine)(p1)(x)(y)
+end in evalhelper@<a>@<b>(e)(x)(y) in
+?

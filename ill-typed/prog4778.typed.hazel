@@ -3,9 +3,11 @@ type expr =
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Thresh(expr, expr, expr, expr)
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
   + Squared(expr)
-  + Flatten(expr, expr, expr)
- in let buildFlatten : forall a -> forall b -> a -> b = typfun a -> typfun b -> fun e -> Flatten(e) in ?
+  + Flatten((expr, expr, expr))
+ in
+let buildFlatten : forall a -> forall b -> a -> b = typfun a -> typfun b -> fun e -> Flatten(e) in
+?

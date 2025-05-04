@@ -3,9 +3,10 @@ type expr =
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Thresh(expr, expr, expr, expr)
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
   + Magic(expr)
-  + Weird(expr, expr, expr)
- in let buildWeird = fun (e1, e2, e3, e4) -> Weird((e1, e2, e3, e4)) in ?
+  + Weird((expr, expr, expr))
+ in
+let buildWeird = fun (e1, e2, e3, e4) -> Weird((e1, e2, e3, e4)) in ?

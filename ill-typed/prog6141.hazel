@@ -1,10 +1,13 @@
 type binop = 
   + Plus
- in type expr = 
+ in
+type expr = 
   + Const(Int)
   + Var(String)
-  + Bin(expr, binop, expr)
-  + Let(String, expr, expr)
-  + App(expr, expr)
-  + Fun(String, expr)
- in let e3 = Let(("x", Const(10), App(Fun(("y", Bin((Var("x"), Plus, Var("y")))))), Var("x"))) in ?
+  + Bin((expr, binop, expr))
+  + Let((String, expr, expr))
+  + App((expr, expr))
+  + Fun((String, expr))
+ in
+let e3 = Let(("x", Const(10), App(Fun(("y", Bin((Var("x"), Plus, Var("y")))))), Var("x"))) in
+?

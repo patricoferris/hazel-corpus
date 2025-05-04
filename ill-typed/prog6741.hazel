@@ -3,12 +3,13 @@ type expr =
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Thresh(expr, expr, expr, expr)
-  + Expn(expr, expr)
-  + TripMult(expr, expr, expr)
- in let exprToString = fun e -> case e 
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
+  + Expn((expr, expr))
+  + TripMult((expr, expr, expr))
+ in
+let exprToString = fun e -> case e 
   | VarX => "x"
   | VarY => "y"
   | Sine(b) => "sin(pi*" ++ exprToString(b) ++ ")"
@@ -22,4 +23,5 @@ type expr =
   | TripMult(a, b, c) =>
       "(" ++ exprToString(a) ++ "*" ++ exprToString(b) ++ "*" ++ exprToString(c) ++ ")"
   | _ => ""
-end in ?
+end in
+?

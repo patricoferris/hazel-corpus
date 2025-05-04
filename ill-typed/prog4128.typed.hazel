@@ -1,0 +1,17 @@
+type expr = 
+  + VarX
+  + VarY
+  + Sine(expr)
+  + Cosine(expr)
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
+ in
+let pi : Float = 4. *. atan(1.) in let eval : (expr, Float, Float) -> Float = fun (e, x, y) -> case e 
+  | Sine(e) => sin(pi *. eval((e, x, y)))
+  | Cosine(e) => cos(pi *. eval((e, x, y)))
+  | Average(e) => x +. y /. 2.
+  | Times(x, y) => x *. y
+  | Thresh(e, f, g, h) => failwith@<Float>("sad")
+end in
+?

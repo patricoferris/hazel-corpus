@@ -3,9 +3,11 @@ type expr =
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Thresh(expr, expr, expr, expr)
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
   + Squares(expr)
-  + Volume(expr, expr, expr)
- in let buildSubstract : forall c -> ? -> c = typfun c -> fun (j, k) -> Volume((j, k)) in ?
+  + Volume((expr, expr, expr))
+ in
+let buildSubstract : forall c -> (a, b) -> c = typfun c -> fun (j, k) -> Volume((j, k)) in
+?

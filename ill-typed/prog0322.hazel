@@ -3,8 +3,9 @@ type expr =
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Thresh(expr, expr, expr, expr)
-  + Custom1(expr, expr, expr)
- in let buildCustom1 = fun e -> Custom1(e) in ?
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
+  + Custom1((expr, expr, expr))
+ in
+let buildCustom1 = fun e -> Custom1(e) in ?

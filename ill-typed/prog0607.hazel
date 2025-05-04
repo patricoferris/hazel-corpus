@@ -3,7 +3,9 @@ type expr =
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Thresh(expr, expr, expr, expr)
- in let sampleExpr1 = Thresh((VarXarY, VarX, Times((Sine(VarX), Cosine(erage((VarX, VarY))))))) in ?
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
+ in
+let sampleExpr1 = Thresh((VarXarY, VarX, Times((Sine(VarX), Cosine(erage((VarX, VarY))))))) in
+?

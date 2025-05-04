@@ -3,12 +3,14 @@ type expr =
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Thresh(expr, expr, expr, expr)
- in let exprToString : expr -> String = fun e -> case e 
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
+ in
+let exprToString : expr -> String = fun e -> case e 
   | VarX => "x"
   | VarY => "y"
-  | Sine => @(VarY)(@("/")(VarX))
-  | Cosine => @(VarX)(@("/")(VarY))
-end in ?
+  | Sine => @@<_weak1>(VarY)(@@<_weak1>("/")(VarX))
+  | Cosine => @@<_weak2>(VarX)(@@<_weak2>("/")(VarY))
+end in
+?

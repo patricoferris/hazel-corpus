@@ -1,6 +1,16 @@
-let clone : forall a -> a -> Int -> [a] = typfun a -> fun x -> fun n -> if n <= 0 then [] else x :: clone@<a>(x)(n - 1) in let padZero : [Int] -> [Int] -> ? = fun l1 -> fun l2 -> let difference = length(l1) - length(l2) in if difference > 0 then (l1, @(clone@<a>(0)(difference))(l2)) else if difference < 0 then (@(clone@<a>(0)(-1 * difference))(l1), l2) else (l1, l2) in let removeZero : [Int] -> [Int] = fun l -> case l 
+let clone : forall a -> a -> Int -> [a] = typfun a -> fun x -> fun n -> if n <= 0 then [] else x :: clone@<a>(x)(n - 1) in
+let padZero : [Int] -> [Int] -> ([Int], [Int]) = fun l1 -> fun l2 -> 
+  let difference = length(l1) - length(l2) in if difference > 0 then (l1, @@<Int>(clone@<Int>(0)(difference))(l2)) else if difference < 0 then (@@<Int>(clone@<Int>(0)(-1 * difference))(l1), l2) else (l1, l2) in
+let removeZero : [Int] -> [Int] = fun l -> case l 
   | [] => l
   | h :: t => if h == 0 then removeZero(t) else h :: t
-end in let bigAdd : [Int] -> [Int] -> [Int] = fun l1 -> fun l2 -> let add = fun (l1, l2) -> let f = fun a -> fun x -> let sum = case x 
+end in
+let bigAdd : [Int] -> [Int] -> [Int] = fun l1 -> fun l2 -> let add = fun (l1, l2) -> 
+                                                           let f = fun a -> fun x -> 
+                                                             let sum = case x 
   | (x1, x2) => x1 + x2
-end in ? in let base = [] in let args = rev(combine(l1)(l2)) in let (_, res) = fold_left(f)(base)(args) in res in removeZero(add(padZero(l1)(l2))) in ?
+end in ? in
+let base = [] in let args = rev(combine(l1)(l2)) in let (_, res) = fold_left(f)(base)(args) in
+                                                  res in
+removeZero(add(padZero(l1)(l2))) in
+?

@@ -3,10 +3,11 @@ type expr =
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Thresh(expr, expr, expr, expr)
- in let exprToString = fun e -> case e 
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
+ in
+let exprToString = fun e -> case e 
   | VarX(e) => printf("%s")(e)
   | VarY(e) => printf("%s")(e)
   | Sine(e) => printf("sin(%s)")(e)
@@ -14,4 +15,5 @@ type expr =
   | (Average(e1), e2) => printf("%s+%s/2")(e1)(e2)
   | (Times(e1), e2) => printf("%s*%s")(e1)(e2)
   | (Thresh(e1), e2, e3, e4) => printf("(%s<%s?%s:%s)")(e1)(e2)(e3)(e4)
-end in ?
+end in
+?

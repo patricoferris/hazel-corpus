@@ -3,10 +3,15 @@ type expr =
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Thresh(expr, expr, expr, expr)
- in let buildCosine : expr -> expr = fun e -> Cosine(e) in let buildSine : expr -> expr = fun e -> Sine(e) in let buildTimes : ? -> expr = fun (e1, e2) -> Times((e1, e2)) in let buildX : unit -> expr = fun () -> VarX in let buildY : unit -> expr = fun () -> VarY in let build : ? -> expr = fun (rand, depth) -> case rand((1, 7)) 
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
+ in
+let buildCosine : expr -> expr = fun e -> Cosine(e) in let buildSine : expr -> expr = fun e -> Sine(e) in
+                                                     let buildTimes : (expr, expr) -> expr = fun (e1, e2) -> Times((e1, e2)) in
+                                                     let buildX : unit -> expr = fun () -> VarX in
+                                                     let buildY : unit -> expr = fun () -> VarY in
+                                                     let build : (((Int, Int) -> Int), a) -> expr = fun (rand, depth) -> case rand((1, 7)) 
   | _ =>
       buildTimes((buildCosine(buildSine(buildX(()))), buildCosine(buildSine(buildX(())))))
   | 1 => buildX(())
@@ -16,4 +21,5 @@ type expr =
   | 5 => buildSine(buildX(()))
   | 6 => buildSine(buildX(()))
   | 7 => buildSine(buildX(()))
-end in ?
+end in
+?

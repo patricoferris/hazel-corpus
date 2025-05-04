@@ -3,22 +3,24 @@ type expr =
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Thresh(expr, expr, expr, expr)
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
   + Tan(expr)
-  + Arc(expr, expr, expr)
- in type expr = 
+  + Arc((expr, expr, expr))
+ in
+type expr = 
   + VarX
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Thresh(expr, expr, expr, expr)
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
   + Tan(expr)
-  + Sin_Avg(expr, expr, expr)
- in let exprToString : expr -> String = fun e -> case e 
+  + Sin_Avg((expr, expr, expr))
+ in
+let exprToString : expr -> String = fun e -> case e 
   | VarX => "x"
   | VarY => "y"
   | Sine(a) => "sin(pi*" ++ exprToString(a) ++ ")"
@@ -32,4 +34,5 @@ type expr =
   | Tan(a) => "tan(pi*" ++ exprToString(a) ++ ")"
   | Arc(a, b, c) =>
       "sin(pi*(" ++ exprToString(a) ++ "+" ++ exprToString(b) ++ exprToString(c) ++ ")"
-end in ?
+end in
+?

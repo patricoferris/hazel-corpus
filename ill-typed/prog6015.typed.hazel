@@ -3,9 +3,11 @@ type expr =
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Thresh(expr, expr, expr, expr)
-  + Square(expr, expr)
-  + Exponential(expr, expr)
- in let buildSquare : forall a -> forall b -> a -> b = typfun a -> typfun b -> fun e -> Square(e) in ?
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
+  + Square((expr, expr))
+  + Exponential((expr, expr))
+ in
+let buildSquare : forall a -> forall b -> a -> b = typfun a -> typfun b -> fun e -> Square(e) in
+?

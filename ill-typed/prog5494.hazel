@@ -3,12 +3,13 @@ let pi = 4. *. atan(1.) in type expr =
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Thresh(expr, expr, expr, expr)
-  + Power(expr, expr)
-  + Op(expr, expr, expr)
- in let eval = fun (e, x, y) -> case e 
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
+  + Power((expr, expr))
+  + Op((expr, expr, expr))
+ in
+let eval = fun (e, x, y) -> case e 
   | VarX => x
   | VarY => y
   | Sine(n) => sin(pi *. eval((n, x, y)))
@@ -20,4 +21,5 @@ let pi = 4. *. atan(1.) in type expr =
   | Power(m, n) => eval((m, x, y)) ** eval((n, x, y))
   | Op(m, n, o) =>
       sqrt(eval((m, x, y)) +. eval((n, x, y)) +. eval((o, x, y))) /. 3.
-end in let _ = eval(Power((VarX, VarY, 0.5, -0.5))) in ?
+end in
+let _ = eval(Power((VarX, VarY, 0.5, -0.5))) in ?

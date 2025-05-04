@@ -3,12 +3,13 @@ type expr =
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Thresh(expr, expr, expr, expr)
-  + Circ(expr, expr)
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
+  + Circ((expr, expr))
   + Oscillate(expr)
- in let exprToString : expr -> String = fun e -> case e 
+ in
+let exprToString : expr -> String = fun e -> case e 
   | VarX => "x"
   | VarY => "y"
   | Sine(sine) => "sin(pi*" ++ exprToString(sine) ++ ")"
@@ -21,4 +22,5 @@ type expr =
   | Circ(circ1) => "sqrt(|1-" ++ exprToString(circ1) ++ "^2|)"
   | Oscillate(m4) =>
       "(" ++ exprToString(m4) ++ "/((1-" ++ exprToString(m4) ++ ")^2+" ++ exprToString(m4) ++ "^2))"
-end in ?
+end in
+?

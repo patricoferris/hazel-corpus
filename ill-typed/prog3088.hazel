@@ -1,1 +1,4 @@
-let digitsOfInt = fun n -> if n < 0 then [] else let a = n / 10 in let b = int_mod((n, 10)) in let c = a :: [b] in ? in ?
+let digitsOfInt = fun n -> if n < 0 then [] else let a = n / 10 in let b = int_mod((n, 10)) in
+                                                                   let c = a :: [b] in
+                                                                   ? in
+?

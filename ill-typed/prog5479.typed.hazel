@@ -3,22 +3,24 @@ type expr =
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Thresh(expr, expr, expr, expr)
-  + Power(expr, expr)
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
+  + Power((expr, expr))
   + Log(expr)
- in type expr = 
+ in
+type expr = 
   + VarX
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Thresh(expr, expr, expr, expr)
-  + Power(expr, expr)
-  + Op(expr, expr, expr)
- in let exprToString : expr -> String = fun e -> case e 
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
+  + Power((expr, expr))
+  + Op((expr, expr, expr))
+ in
+let exprToString : expr -> String = fun e -> case e 
   | VarX => "x"
   | VarY => "y"
   | Sine(n) => "sin(pi*" ++ exprToString(n) ++ ")"
@@ -31,4 +33,5 @@ type expr =
   | Power(x, y) => exprToString(x) ++ "**" ++ exprToString(y)
   | Op(x, y, z) =>
       "(" ++ exprToString(x) ++ "*" ++ exprToString(y) ++ ")/" ++ exprToString(z)
-end in let _ = exprToString(Log(VarX)) in ?
+end in
+let _ = exprToString(Log(VarX)) in ?

@@ -1,0 +1,36 @@
+type expr = 
+  + VarX
+  + VarY
+  + Sine(expr)
+  + Cosine(expr)
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
+  + Circ((expr, expr))
+  + Arcsin(expr)
+ in
+type expr = 
+  + VarX
+  + VarY
+  + Sine(expr)
+  + Cosine(expr)
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
+  + Circ((expr, expr))
+  + Quad(expr)
+ in
+let pi : Float = 4. *. atan(1.) in let eval : (expr, Float, Float) -> Float = fun (e, x, y) -> case e 
+  | VarX => x
+  | VarY => y
+  | Sine(sine) => sin(pi *. eval((sine, x, y)))
+  | Cosine(cosine) => cos(pi *. eval((cosine, x, y)))
+  | Average(e1, e2) => eval((e1, x, y)) +. eval((e2, x, y)) /. 2.
+  | Times(t1, t2) => eval((t1, x, y)) *. eval((t2, x, y))
+  | Thresh(th1, th2, th3, th4) =>
+      if eval((th1, x, y)) < eval((th2, x, y)) then eval((th3, x, y)) else eval((th4, x, y))
+  | Circ(circ1, circ2) =>
+      eval((circ1, x, y)) ** 2. +. eval((circ2, x, y)) ** 2.
+  | Arcsin(m4) => eval((m4, x, y)) ** 4.
+end in
+?

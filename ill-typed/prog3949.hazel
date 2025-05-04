@@ -1,10 +1,17 @@
 let clone = fun x -> fun n -> case n 
   | 0 => []
   | a => if a < 0 then [] else @(clone(x)(n - 1))([x])
-end in let padZero = fun l1 -> fun l2 -> if length(l1) > length(l2) then (l1, append(clone(0)(length(l1) - length(l2)))(l2)) else (append(clone(0)(length(l2) - length(l1)))(l1), l2) in let removeZero = fun l -> case l 
+end in
+let padZero = fun l1 -> fun l2 -> if length(l1) > length(l2) then (l1, append(clone(0)(length(l1) - length(l2)))(l2)) else (append(clone(0)(length(l2) - length(l1)))(l1), l2) in
+let removeZero = fun l -> case l 
   | [] => l
   | h :: t => if h == 0 then removeZero(t) else l
-end in let bigAdd = fun l1 -> fun l2 -> let add = fun (l1, l2) -> let f = fun a -> fun x -> case x 
+end in
+let bigAdd = fun l1 -> fun l2 -> let add = fun (l1, l2) -> let f = fun a -> fun x -> case x 
   | ([], []) => []
   | ([h1 :: t1], [h2 :: t2]) => ?
-end in let base = [] in let args = l1(l2) in let (_, res) = fold_left(f)(base)(args) in res in removeZero(add(padZero(l1)(l2))) in ?
+end in
+let base = [] in let args = l1(l2) in let (_, res) = fold_left(f)(base)(args) in
+                                    res in
+removeZero(add(padZero(l1)(l2))) in
+?

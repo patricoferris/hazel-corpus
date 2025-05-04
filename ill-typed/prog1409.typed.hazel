@@ -1,0 +1,27 @@
+let a : (Int, Int) = (1, 2) in let (c, d) = (1, 2) in let pi : Float = 4. *. atan(1.) in
+                                                      type expr = 
+  + VarX
+  + VarY
+  + Sine(expr)
+  + Cosine(expr)
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
+  + Foo((expr, expr))
+  + Clamp((expr, expr, expr))
+ in
+let eval : (expr, Float, Float) -> Float = fun (e, x, y) -> case e 
+  | VarX => x
+  | VarY => y
+  | Sine(a) => sin(eval((a, x, y)) *. pi)
+  | Cosine(a) => cos(eval((a, x, y)) *. pi)
+  | Average(a, b) => eval((a, x, y)) +. eval((b, x, y)) /. 2.
+  | Times(a, b) => eval((a, x, y)) *. eval((b, x, y))
+  | Thresh(a, b, c, d) =>
+      if eval((a, x, y)) < eval((b, x, y)) then eval((c, x, y)) else eval((d, x, y))
+  | Foo(a, b) =>
+      if eval((a, x, y)) < eval((b, x, y)) then 0.9 *. eval((a, x, y)) else 0.1 *. eval((a, x, y))
+  | Clamp(a, b, c) =>
+      if eval((a, x, y)) < eval((b, x, y)) then eval((b, x, y)) else if eval((a, x, y)) > eval((c, x, y)) then eval((c, x, y)) else eval((a, x, y))
+end in
+let _ = eval((Clamp((Sine(Varx), VarX, VarY)), 1, 2)) in ?

@@ -1,4 +1,6 @@
-let removeDuplicates : forall a -> [unit] -> [a] = typfun a -> fun l -> let helper = fun (seen, rest) -> case rest 
+let removeDuplicates : forall a -> [unit] -> [a] = typfun a -> fun l -> 
+  let helper = fun (seen, rest) -> case rest 
   | [] => seen
   | h :: t => let seen' = ? in let rest' = t in helper((seen', rest'))
-end in rev(helper(([], l))) in ?
+end in rev@<unit>@<a>(helper(([], l))) in
+?

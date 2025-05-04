@@ -3,7 +3,9 @@ type expr =
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Thresh(expr, expr, expr, expr)
- in let buildCosine = fun e -> Cosine(e) in let buildSine = fun e -> Sine(e) in let _ = Thresh((buildSine(buildCosine(VarX)), VarX, VarY, VarZ)) in ?
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
+ in
+let buildCosine = fun e -> Cosine(e) in let buildSine = fun e -> Sine(e) in 
+let _ = Thresh((buildSine(buildCosine(VarX)), VarX, VarY, VarZ)) in ?

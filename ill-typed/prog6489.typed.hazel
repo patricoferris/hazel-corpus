@@ -1,4 +1,7 @@
-let wwhile : forall b -> ? -> [b] = typfun b -> fun (f, b) -> let x = wwhile@<b>((f, b)) in let h :: t = x in case [t] 
+let wwhile : forall b -> (a, b) -> [b] = typfun b -> fun (f, b) -> let x = wwhile@<b>((f, b)) in
+                                                                   let h :: t = x in
+                                                                   case [t] 
   | false => h
   | true => wwhile@<b>((f, h))
-end in ?
+end in
+?

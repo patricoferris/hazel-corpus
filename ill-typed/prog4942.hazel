@@ -3,22 +3,24 @@ type expr =
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Thresh(expr, expr, expr, expr)
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
   + Square(expr)
-  + Volume(expr, expr, expr)
- in type expr = 
+  + Volume((expr, expr, expr))
+ in
+type expr = 
   + VarX
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Thresh(expr, expr, expr, expr)
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
   + Sqaure(expr)
-  + Volume(expr, expr, expr)
- in let exprToString = fun e -> case e 
+  + Volume((expr, expr, expr))
+ in
+let exprToString = fun e -> case e 
   | VarX => "x"
   | VarY => "y"
   | Sine(t) => "sin(pi*" ++ exprToString(t) ++ ")"
@@ -31,4 +33,5 @@ type expr =
   | Square(s) => "(" ++ exprToString(s) ++ ")^2"
   | Volume(s, t, u) =>
       "Vol(H: " ++ exprToString(s) ++ ", W: " ++ exprToString(t) ++ ", L: " ++ exprToString(u) ++ ")"
-end in ?
+end in
+?

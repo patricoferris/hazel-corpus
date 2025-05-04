@@ -3,12 +3,13 @@ type expr =
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Thresh(expr, expr, expr, expr)
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
   + Half(expr)
   + Timestwo(expr)
- in let pi = 4. *. atan(1.) in let eval = fun (e, x, y) -> case e 
+ in
+let pi = 4. *. atan(1.) in let eval = fun (e, x, y) -> case e 
   | VarX => x
   | VarY => y
   | Sine(a) => sin(pi *. eval((a, x, y)))
@@ -19,4 +20,5 @@ type expr =
       if eval((a, x, y)) < eval((b, x, y)) then eval((c, x, y)) else eval((d, x, y))
   | Half(a) => 0.5 *. eval((a, x, y))
   | Third(a) => 0.33 *. eal((a, x, y))
-end in ?
+end in
+?

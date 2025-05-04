@@ -1,0 +1,25 @@
+type expr = 
+  + VarX
+  + VarY
+  + Sine(expr)
+  + Cosine(expr)
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
+  + Square(expr)
+  + Exponential((expr, expr))
+ in
+let pi : Float = 4. *. atan(1.) in let eval : (expr, Float, Float) -> Float = fun (e, x, y) -> case e 
+  | VarX => x
+  | VarY => y
+  | Sine(i) => sin(pi *. eval((i, x, y)))
+  | Cosine(i) => cos(pi *. eval((i, x, y)))
+  | Average(i1, i2) => eval((i1, x, y)) +. eval((i2, x, y)) /. 2.
+  | Times(i1, i2) => eval((i1, x, y)) *. eval((i2, x, y))
+  | Thresh(i1, i2, i3, i4) =>
+      if eval((i1, x, y)) < eval((i2, x, y)) then eval((i3, x, y)) else eval((i4, x, y))
+  | Cubic(i1, i2, i3) =>
+      eval((i1, x, y)) *. eval((i2, x, y)) *. eval((i3, x, y))
+  | Exponential(i1, i2) => eval((i1, x, y)) ** eval((i2, x, y))
+end in
+?

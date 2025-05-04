@@ -3,9 +3,11 @@ type expr =
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Thresh(expr, expr, expr, expr)
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
   + Tan(expr)
-  + Sine_Avg(expr, expr, expr)
- in let buildSine_Avg : forall c -> ? -> c = typfun c -> fun (e1, e2) -> Sine_Avg((e1, e2)) in ?
+  + Sine_Avg((expr, expr, expr))
+ in
+let buildSine_Avg : forall c -> (a, b) -> c = typfun c -> fun (e1, e2) -> Sine_Avg((e1, e2)) in
+?

@@ -3,19 +3,22 @@ type expr =
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Tangent(expr, expr)
-  + Square2(expr, expr, expr)
-  + Thresh(expr, expr, expr, expr)
- in type expr = 
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Tangent((expr, expr))
+  + Square2((expr, expr, expr))
+  + Thresh((expr, expr, expr, expr))
+ in
+type expr = 
   + VarX
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Diff2(expr, expr)
-  + Square2(expr, expr, expr)
-  + Thresh(expr, expr, expr, expr)
- in let sampleExprTangent = Thresh((VarX, VarY, VarX, Tangent((Sine(VarX), Cosine(Average((VarX, VarY))))))) in ?
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Diff2((expr, expr))
+  + Square2((expr, expr, expr))
+  + Thresh((expr, expr, expr, expr))
+ in
+let sampleExprTangent = Thresh((VarX, VarY, VarX, Tangent((Sine(VarX), Cosine(Average((VarX, VarY))))))) in
+?

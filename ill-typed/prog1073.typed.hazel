@@ -1,0 +1,16 @@
+let pi : Float = 4. *. atan(1.) in type expr = 
+  + VarX
+  + VarY
+  + Sine(expr)
+  + Cosine(expr)
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
+ in
+let eval : (expr, Int, Int) -> Float = fun (e, x, y) -> let evalhelper = fun e -> fun x -> fun y -> case e 
+  | VarX => float(x)
+  | VarY => float(y)
+  | Sine(p1) => sin(pi *. evalhelper(p1)(x)(y))
+  | Cosine(p1) => cos(pi *. evalhelper(p1)(x)(y))
+end in evalhelper(e)(x)(y) in
+let _ = eval((Sine(Varx), 0.5, -0.5)) in ?

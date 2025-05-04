@@ -3,12 +3,13 @@ type expr =
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Thresh(expr, expr, expr, expr)
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
   + Power(expr)
-  + KellysOp(expr, expr, expr, expr)
- in let exprToString : expr -> String = fun e -> case e 
+  + KellysOp((expr, expr, expr, expr))
+ in
+let exprToString : expr -> String = fun e -> case e 
   | VarX => "x"
   | VarY => "y"
   | Sine(e1) => "sin(pi*" ++ exprToString(e1) ++ ")"
@@ -21,4 +22,5 @@ type expr =
   | Power(e11) => "((" ++ exprToString(e11) ++ ")^2)"
   | KellysOp(e1, e2, e3) =>
       "(" ++ exprToString(e1) ++ ">" ++ exprToString(e2) ++ "?" ++ exprToString(e3) ++ ":0.0"
-end in ?
+end in
+?

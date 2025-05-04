@@ -3,12 +3,13 @@ type expr =
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Thresh(expr, expr, expr, expr)
-  + Circ(expr, expr)
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
+  + Circ((expr, expr))
   + Oscillate(expr)
- in let pi = 4. *. atan(1.) in let eval = fun (e, x, y) -> case e 
+ in
+let pi = 4. *. atan(1.) in let eval = fun (e, x, y) -> case e 
   | VarX => x
   | VarY => y
   | Sine(sine) => sin(pi *. eval((sine, x, y)))
@@ -20,4 +21,5 @@ type expr =
   | Circ(circ1) => sqrt(abs_float(1. -. eval((circ1, x, y)) ** 2.))
   | Oscillate(m4) =>
       let x = eval((m4, x, y)) in x /. sqrt(1. -. x ** 2. +. x ** 2.)
-end in ?
+end in
+?

@@ -3,11 +3,12 @@ type expr =
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Thresh(expr, expr, expr, expr)
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
   + SinCos(expr)
- in let eval = fun (e, x, y) -> let pi = 3.14 in case e 
+ in
+let eval = fun (e, x, y) -> let pi = 3.14 in case e 
   | VarX => x
   | VarY => y
   | Sine(ex) => sin(pi *. eval((ex, x, y)))
@@ -19,4 +20,5 @@ type expr =
   | SinCos(ex) => sin(pi *. eval((ex, x, y))) *. cos(pi *. eval((ex, x, y)))
   | Three(ex1, ex2, ex3) =>
       eval((ex1, x, y)) *. cos(pi *. eval((ex2, x, y))) *. sin(pi *. eval((ex3, x, y)))
-end in ?
+end in
+?

@@ -3,10 +3,15 @@ type expr =
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Thresh(expr, expr, expr, expr)
- in let buildAverage : ? -> expr = fun (e1, e2) -> Average((e1, e2)) in let buildCosine : expr -> expr = fun e -> Cosine(e) in let buildSine : expr -> expr = fun e -> Sine(e) in let buildThresh : ? -> expr = fun (a, b, a_less, b_less) -> Thresh((a, b, a_less, b_less)) in let buildTimes : ? -> expr = fun (e1, e2) -> Times((e1, e2)) in let eval : forall a -> ? -> a = typfun a -> fun (e, x, y) -> case e 
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
+ in
+let buildAverage : (expr, expr) -> expr = fun (e1, e2) -> Average((e1, e2)) in 
+let buildCosine : expr -> expr = fun e -> Cosine(e) in let buildSine : expr -> expr = fun e -> Sine(e) in
+                                                       let buildThresh : (expr, expr, expr, expr) -> expr = fun (a, b, a_less, b_less) -> Thresh((a, b, a_less, b_less)) in
+                                                       let buildTimes : (expr, expr) -> expr = fun (e1, e2) -> Times((e1, e2)) in
+                                                       let eval : forall a -> (expr, a, a) -> a = typfun a -> fun (e, x, y) -> case e 
   | VarX(a) => x
   | VarY(b) => y
   | Sine(x1) => eval@<a>((buildSine(x1), x, y))
@@ -14,4 +19,5 @@ type expr =
   | Average(x3, x4) => eval@<a>((buildAverage((x3, x4)), x, y))
   | Times(x5, x6) => eval@<a>((buildTimes((x5, x6)), x, y))
   | Thresh(x7, x8, x9, x0) => eval@<a>((buildThresh((x7, x8, x9, x0)), x, y))
-end in ?
+end in
+?

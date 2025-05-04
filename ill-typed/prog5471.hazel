@@ -3,10 +3,11 @@ type expr =
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Thresh(expr, expr, expr, expr)
- in let build = fun (rand, depth) -> if depth == 0 then let g = rand((0, 1)) in case g 
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
+ in
+let build = fun (rand, depth) -> if depth == 0 then let g = rand((0, 1)) in case g 
   | 0 => VarX
   | 1 => VarY
 end else let g = rand((0, 4)) in case g 
@@ -15,4 +16,5 @@ end else let g = rand((0, 4)) in case g
   | 2 => Average((build((rand, depth - 1)), build((rand, depth - 1))))
   | 3 => Times((build((rand, depth - 1)), build((rand, depth - 1))))
   | 4 => Thresh((build((rand, depth - 1)), build((rand, depth - 1))))
-end in ?
+end in
+?

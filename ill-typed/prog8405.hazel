@@ -1,1 +1,2 @@
-let wwhile = fun (f, b) -> let (b', c') = f(b) in if c' == true then wwhile((f, b')) else b' in let fixpoint = fun (f, b) -> wwhile((fun x -> (f(b), NOT(b == f(b))), b)) in ?
+let wwhile = fun (f, b) -> let (b', c') = f(b) in if c' == true then wwhile((f, b')) else b' in
+let fixpoint = fun (f, b) -> wwhile((fun x -> (f(b), NOT(b == f(b))), b)) in ?

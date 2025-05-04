@@ -3,12 +3,15 @@ type expr =
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Thresh(expr, expr, expr, expr)
- in let buildCosine = fun e -> Cosine(e) in let buildSine = fun e -> Sine(e) in let buildX = fun () -> VarX in let buildY = fun () -> VarY in let build = fun (rand, depth) -> if depth > 0 then case rand 
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
+ in
+let buildCosine = fun e -> Cosine(e) in let buildSine = fun e -> Sine(e) in 
+let buildX = fun () -> VarX in let buildY = fun () -> VarY in let build = fun (rand, depth) -> if depth > 0 then case rand 
   | (0, 2) => buildX(())
   | (3, 5) => buildY(())
   | (6, 10) => buildSine(build((rand, depth - 1)))
   | (11, 18) => buildCosine(build((rand, depth - 1)))
-end else () in ?
+end else () in
+?

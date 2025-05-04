@@ -1,1 +1,2 @@
-let digitsOfInt = fun n -> let numL = [] in if n / 10 > 0 then &&(int_mod((n, 10)) :: numL)(digitsOfInt(n) / 10) else numL in ?
+let digitsOfInt = fun n -> let numL = [] in if n / 10 > 0 then &&(int_mod((n, 10)) :: numL)(digitsOfInt(n) / 10) else numL in
+?

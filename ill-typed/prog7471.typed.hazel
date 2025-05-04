@@ -1,0 +1,18 @@
+type expr = 
+  + VarX
+  + VarY
+  + Sine(expr)
+  + Cosine(expr)
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
+ in
+let pi : Float = 4. *. atan(1.) in let exprToString : expr -> expr = fun e -> case e 
+  | VarX => e
+  | Sine(e') => sin(pi * e')
+  | Cosine(e') => cos(pi * e')
+  | Average => e' + e' / 2
+  | Times => e' * e'
+  | Thresh => ?
+end in
+?

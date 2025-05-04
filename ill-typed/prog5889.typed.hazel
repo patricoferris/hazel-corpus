@@ -3,13 +3,14 @@ type expr =
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Thresh(expr, expr, expr, expr)
-  + TimesTimes(expr, expr, expr)
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
+  + TimesTimes((expr, expr, expr))
   + Cube(expr)
-  + MultDivBy6(expr, expr)
- in let exprToString : expr -> String = fun e -> case e 
+  + MultDivBy6((expr, expr))
+ in
+let exprToString : expr -> String = fun e -> case e 
   | VarX => "x"
   | VarY => "y"
   | Sine(e1) => "sin (pi*" ++ exprToString(e1) ++ ")"
@@ -25,4 +26,5 @@ type expr =
       exprToString(e1) ++ " * " ++ exprToString(e1) ++ " * " ++ exprToString(e1)
   | MultDivBy6 =>
       "(("(exprToString(e1)) ++ " * " ++ exprToString(e2) ++ ") /6)"
-end in ?
+end in
+?

@@ -3,11 +3,15 @@ type expr =
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Thresh(expr, expr, expr, expr)
- in let buildSine : expr -> expr = fun e -> Sine(e) in let buildX : unit -> expr = fun () -> VarX in let buildY : unit -> expr = fun () -> VarY in let eval : ? -> unit -> expr = fun (e, x, y) -> case e 
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
+ in
+let buildSine : expr -> expr = fun e -> Sine(e) in let buildX : unit -> expr = fun () -> VarX in
+                                                 let buildY : unit -> expr = fun () -> VarY in
+                                                 let eval : (expr, a, b) -> unit -> expr = fun (e, x, y) -> case e 
   | VarX => buildX
   | VarY => buildY
   | Sine => buildSine(e)
-end in ?
+end in
+?

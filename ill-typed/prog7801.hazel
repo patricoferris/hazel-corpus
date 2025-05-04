@@ -3,10 +3,11 @@ type expr =
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Thresh(expr, expr, expr, expr)
- in let pi = 4. *. atan(1.) in let eval = fun (e, x, y) -> case e 
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
+ in
+let pi = 4. *. atan(1.) in let eval = fun (e, x, y) -> case e 
   | VarX => x
   | VarY => y
   | Sine(e) => sin(pi *. eval((e, x, y)))
@@ -15,4 +16,5 @@ type expr =
   | Times(x, y) => eval((e, x, y)) *. eval((e, x, y))
   | Thresh(w, x, y, z) =>
       eval((e, x, y)) *. eval((e, x, y)) *. eval((e, x, y)) *. eval((e, x, y))(uncomment)(after)(implementing)(eval)
-end in ?
+end in
+?

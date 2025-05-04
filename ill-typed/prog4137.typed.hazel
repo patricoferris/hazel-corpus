@@ -3,9 +3,11 @@ type expr =
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Thresh(expr, expr, expr, expr)
-  + Timmy1(expr, expr, expr)
-  + Timmy2(expr, expr, expr, expr)
- in let buildTimmy2 : forall c -> ? -> c = typfun c -> fun (e1, e2) -> Timmy2((e1, e2)) in ?
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
+  + Timmy1((expr, expr, expr))
+  + Timmy2((expr, expr, expr, expr))
+ in
+let buildTimmy2 : forall c -> (a, b) -> c = typfun c -> fun (e1, e2) -> Timmy2((e1, e2)) in
+?

@@ -1,3 +1,4 @@
 let equiv : forall a -> forall b -> [a] -> [b] -> unit = typfun a -> typfun b -> fun x -> fun y -> case x 
   | [] => ?
-end in ?
+end in
+?

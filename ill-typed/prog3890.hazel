@@ -3,18 +3,26 @@ type expr =
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Thresh(expr, expr, expr, expr)
- in type expr = 
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
+ in
+type expr = 
   + VarX
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Thresh(expr, expr, expr, expr)
- in let buildAverage = fun (e1, e2) -> Average((e1, e2)) in let buildCosine = fun e -> Cosine(e) in let buildSine = fun e -> Sine(e) in let buildThresh = fun (a, b, a_less, b_less) -> Thresh((a, b, a_less, b_less)) in let buildTimes = fun (e1, e2) -> Times((e1, e2)) in let buildX = fun () -> VarX in let buildY = fun () -> VarY in let exprToString = fun e -> case e 
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
+ in
+let buildAverage = fun (e1, e2) -> Average((e1, e2)) in let buildCosine = fun e -> Cosine(e) in
+                                                      let buildSine = fun e -> Sine(e) in
+                                                      let buildThresh = fun (a, b, a_less, b_less) -> Thresh((a, b, a_less, b_less)) in
+                                                      let buildTimes = fun (e1, e2) -> Times((e1, e2)) in
+                                                      let buildX = fun () -> VarX in
+                                                      let buildY = fun () -> VarY in
+                                                      let exprToString = fun e -> case e 
   | Thresh(a, b, c, d) => exprToString(buildThresh)((a, b, c, d))
   | Times(a, b) => exprToString(buildTimes)((a, b))
   | Average(a, b) => exprToString(buildAverage)((a, b))
@@ -23,4 +31,5 @@ type expr =
   | VarY => exprToString(buildY)
   | VarX => exprToString(buildX)
   | None => 0
-end in ?
+end in
+?

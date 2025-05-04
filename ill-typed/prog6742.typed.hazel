@@ -3,9 +3,11 @@ type expr =
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Thresh(expr, expr, expr, expr)
-  + Expn(expr, expr)
-  + TripMult(expr, expr, expr)
- in let buildExpn : forall a -> forall b -> a -> b = typfun a -> typfun b -> fun b -> Expn(b) in ?
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
+  + Expn((expr, expr))
+  + TripMult((expr, expr, expr))
+ in
+let buildExpn : forall a -> forall b -> a -> b = typfun a -> typfun b -> fun b -> Expn(b) in
+?

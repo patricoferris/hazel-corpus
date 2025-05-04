@@ -4,21 +4,23 @@ type expr =
   + Sine(expr)
   + Cosine(expr)
   + Root(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Pivot(expr, expr, expr)
-  + Thresh(expr, expr, expr, expr)
- in type expr = 
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Pivot((expr, expr, expr))
+  + Thresh((expr, expr, expr, expr))
+ in
+type expr = 
   + VarX
   + VarY
   + Sine(expr)
   + Cosine(expr)
   + Flip(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Pivot(expr, expr, expr)
-  + Thresh(expr, expr, expr, expr)
- in let exprToString : expr -> String = fun e -> case e 
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Pivot((expr, expr, expr))
+  + Thresh((expr, expr, expr, expr))
+ in
+let exprToString : expr -> String = fun e -> case e 
   | VarX => "x"
   | VarY => "y"
   | Sine(x1) => "sin(pi*" ++ exprToString(x1) ++ ")"
@@ -31,4 +33,5 @@ type expr =
       "(" ++ exprToString(x8) ++ "<" ++ exprToString(x9) ++ "?" ++ exprToString(x10) ++ ":" ++ exprToString(x11) ++ ")"
   | Pivot(x12, x13, x14) =>
       "(" ++ exprToString(x12) ++ "<0?" ++ exprToString(x13) ++ ":" ++ exprToString(x14) ++ ")"
-end in ?
+end in
+?

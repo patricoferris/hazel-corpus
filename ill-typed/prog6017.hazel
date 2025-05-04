@@ -3,12 +3,13 @@ type expr =
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Thresh(expr, expr, expr, expr)
-  + Square(expr, expr)
-  + Exponential(expr, expr)
- in let exprToString = fun e -> case e 
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
+  + Square((expr, expr))
+  + Exponential((expr, expr))
+ in
+let exprToString = fun e -> case e 
   | VarX => "x"
   | VarY => "y"
   | Sine(i) => "sin(pi*" ++ exprToString(i) ++ ")"
@@ -20,4 +21,5 @@ type expr =
       "(" ++ exprToString(i1) ++ "<" ++ exprToString(i2) ++ " ? " ++ exprToString(i3) ++ ":" ++ exprToString(i4) ++ ")"
   | Square(i) => exprToString(i)("*")(exprToString)(i)
   | Exponential(i1, i2) => exprToString(i1)("*")(exprToString)(i2)
-end in ?
+end in
+?

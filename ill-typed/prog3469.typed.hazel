@@ -3,10 +3,17 @@ type expr =
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Thresh(expr, expr, expr, expr)
- in let buildAverage : ? -> expr = fun (e1, e2) -> Average((e1, e2)) in let buildCosine : expr -> expr = fun e -> Cosine(e) in let buildSine : expr -> expr = fun e -> Sine(e) in let buildThresh : ? -> expr = fun (a, b, a_less, b_less) -> Thresh((a, b, a_less, b_less)) in let buildTimes : ? -> expr = fun (e1, e2) -> Times((e1, e2)) in let buildX : unit -> expr = fun () -> VarX in let buildY : unit -> expr = fun () -> VarY in let build : ? -> expr = fun (rand, depth) -> case rand((1, 7)) 
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
+ in
+let buildAverage : (expr, expr) -> expr = fun (e1, e2) -> Average((e1, e2)) in 
+let buildCosine : expr -> expr = fun e -> Cosine(e) in let buildSine : expr -> expr = fun e -> Sine(e) in
+                                                       let buildThresh : (expr, expr, expr, expr) -> expr = fun (a, b, a_less, b_less) -> Thresh((a, b, a_less, b_less)) in
+                                                       let buildTimes : (expr, expr) -> expr = fun (e1, e2) -> Times((e1, e2)) in
+                                                       let buildX : unit -> expr = fun () -> VarX in
+                                                       let buildY : unit -> expr = fun () -> VarY in
+                                                       let build : (((Int, Int) -> Int), Int) -> expr = fun (rand, depth) -> case rand((1, 7)) 
   | _ => buildCosine(())
   | 1 => buildX(())
   | 2 => buildY(())
@@ -20,4 +27,5 @@ type expr =
       buildTimes((if depth == 0 then buildX(()) else build((rand, depth - 1)), if depth == 0 then buildY(()) else build((rand, depth - 1))))
   | 7 =>
       buildThresh((if depth == 0 then buildX(()) else build((rand, depth - 1)), if depth == 0 then buildY(()) else build((rand, depth - 1)), if depth == 0 then buildX(()) else build((rand, depth - 1)), if depth == 0 then buildY(()) else build((rand, depth - 1))))
-end in ?
+end in
+?

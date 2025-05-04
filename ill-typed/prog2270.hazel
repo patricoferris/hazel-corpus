@@ -3,10 +3,11 @@ type expr =
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Thresh(expr, expr, expr, expr)
- in let exprToString = fun e -> case e 
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
+ in
+let exprToString = fun e -> case e 
   | VarX => []
   | VarY => []
   | Sine(e1) => exprToString(e1)
@@ -15,4 +16,5 @@ type expr =
   | Times(e1, e2) => exprToString(e1) ++ exprToString(e2)
   | Thresh(e1, e2, e3) =>
       exprToString(e1) ++ exprToString(e2) ++ exprToString(e3)
-end in ?
+end in
+?

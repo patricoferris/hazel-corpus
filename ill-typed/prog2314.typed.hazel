@@ -3,10 +3,12 @@ type expr =
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Thresh(expr, expr, expr, expr)
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
   + Percent(expr)
   + Negate(expr)
-  + SumPercent(expr, expr, expr)
- in let buildSumPercent : forall a -> forall b -> a -> b = typfun a -> typfun b -> fun e -> SumPercent(e) in ?
+  + SumPercent((expr, expr, expr))
+ in
+let buildSumPercent : forall a -> forall b -> a -> b = typfun a -> typfun b -> fun e -> SumPercent(e) in
+?

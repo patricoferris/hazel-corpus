@@ -3,10 +3,11 @@ type expr =
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Thresh(expr, expr, expr, expr)
- in let exprToString = fun e -> case e 
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
+ in
+let exprToString = fun e -> case e 
   | VarX => "x"
   | VarY => "y"
   | Sine(x) => "sin(pi*" ++ exprToString(x) ++ ")"
@@ -18,4 +19,5 @@ type expr =
       "(" ++ exprToString(x) ++ "<" ++ exprToString(y) ++ "?" ++ exprToString(z) ++ ":" ++ exprToString(s) ++ ")"
   | Trip(x, y, z) =>
       "((" ++ exprToString(x) ++ "%30.0)" ++ exprToString ++ "%" ++ exprToString(z) ++ ")"
-end in ?
+end in
+?

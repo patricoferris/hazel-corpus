@@ -3,9 +3,11 @@ type expr =
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Thresh(expr, expr, expr, expr)
-  + Mean3(expr, expr, expr)
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
+  + Mean3((expr, expr, expr))
   + Square(expr)
- in let sampleExpr1 = Thresh((VarX, VarY, VarX, Times((Sine(Mean((VarX, VarX, VarY))), Cosine(Average((Square(VarX), VarY))))))) in ?
+ in
+let sampleExpr1 = Thresh((VarX, VarY, VarX, Times((Sine(Mean((VarX, VarX, VarY))), Cosine(Average((Square(VarX), VarY))))))) in
+?

@@ -3,22 +3,24 @@ type expr =
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Thresh(expr, expr, expr, expr)
-  + TimesTimes(expr, expr, expr)
-  + SqXPlusY(expr, expr)
- in type expr = 
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
+  + TimesTimes((expr, expr, expr))
+  + SqXPlusY((expr, expr))
+ in
+type expr = 
   + VarX
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Thresh(expr, expr, expr, expr)
-  + TimesTimes(expr, expr, expr)
-  + SqXPlusYDiv2(expr, expr)
- in let pi = 4. *. atan(1.) in let eval = fun (e, x, y) -> case e 
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
+  + TimesTimes((expr, expr, expr))
+  + SqXPlusYDiv2((expr, expr))
+ in
+let pi = 4. *. atan(1.) in let eval = fun (e, x, y) -> case e 
   | VarX => x
   | VarY => y
   | Sine(e1) => sin(pi *. eval((e1, x, y)))
@@ -31,4 +33,5 @@ type expr =
       eval((e1, x, y)) *. eval((e2, x, y)) *. eval((e3, x, y))
   | SqXPlusY(e1, e2) =>
       eval((e1, x, y)) *. eval((e1, x, y)) +. eval((e2, x, y)) /. 2.
-end in ?
+end in
+?

@@ -1,3 +1,4 @@
 let pipe = fun fs -> let f = fun a -> fun x -> case fs 
   | h :: t => h
-end in let base = [] in fold_left(f)(base)(fs) in ?
+end in let base = [] in fold_left(f)(base)(fs) in
+?

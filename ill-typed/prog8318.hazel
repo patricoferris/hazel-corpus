@@ -3,9 +3,10 @@ type expr =
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Thresh(expr, expr, expr, expr)
-  + Power(expr, expr)
-  + TowerNeg(expr, expr, expr)
- in let sampleExpr5 = TowerNeg((VarX, VarY, VarZ)) in ?
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
+  + Power((expr, expr))
+  + TowerNeg((expr, expr, expr))
+ in
+let sampleExpr5 = TowerNeg((VarX, VarY, VarZ)) in ?

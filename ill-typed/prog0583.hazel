@@ -3,12 +3,13 @@ type expr =
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Thresh(expr, expr, expr, expr)
-  + Acossin(expr, expr)
-  + XOR3(expr, expr, expr)
- in let exprToString = fun e -> case e 
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
+  + Acossin((expr, expr))
+  + XOR3((expr, expr, expr))
+ in
+let exprToString = fun e -> case e 
   | VarX => "x"
   | VarY => "y"
   | Sine(e') => "sin(pi*" ++ exprToString(e') ++ ")"
@@ -21,4 +22,5 @@ type expr =
   | Acossin(e1, e2) =>
       "(acos(" ++ exprToString(e1) ++ ")*asin(" ++ exprToString(e2) ++ ")*2/(pi^2))"
   | Asin(e1, e2, e3) => ""
-end in ?
+end in
+?

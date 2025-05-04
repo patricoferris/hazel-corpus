@@ -1,1 +1,6 @@
-let bigAdd = fun l1 -> fun l2 -> let add = fun (l1, l2) -> let f = fun a -> fun x -> map(fun x -> x + a)(x) in let base = hd(L1) in let args = l2 in let (_, res) = fold_left(f)(base)(args) in res in removeZero(add(padZero(l1)(l2))) in ?
+let bigAdd = fun l1 -> fun l2 -> let add = fun (l1, l2) -> let f = fun a -> fun x -> map(fun x -> x + a)(x) in
+                                                           let base = hd(L1) in
+                                                           let args = l2 in 
+                                   let (_, res) = fold_left(f)(base)(args) in res in
+                                 removeZero(add(padZero(l1)(l2))) in
+?

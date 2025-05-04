@@ -4,8 +4,9 @@ type expr =
   + Sine(expr)
   + Cosine(expr)
   + Square(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + MyExpr(expr, expr, expr, expr)
-  + Thresh(expr, expr, expr, expr)
- in let buildMyExpr = fun (a, b, a_less) -> MyExpr((a, b, a_less)) in ?
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + MyExpr((expr, expr, expr, expr))
+  + Thresh((expr, expr, expr, expr))
+ in
+let buildMyExpr = fun (a, b, a_less) -> MyExpr((a, b, a_less)) in ?

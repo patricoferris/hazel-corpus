@@ -1,1 +1,5 @@
-let clone = fun x -> fun n -> if n < 1 then [] else x :: clone(x)(n - 1) in let padZero = fun l1 -> fun l2 -> let difference1 = length(l1) - length(l2) in let difference2 = length(l2) - length(l1) in if difference1 > 0 then clone(0)(difference1) :: l1 else ? in ?
+let clone = fun x -> fun n -> if n < 1 then [] else x :: clone(x)(n - 1) in 
+let padZero = fun l1 -> fun l2 -> let difference1 = length(l1) - length(l2) in
+                                  let difference2 = length(l2) - length(l1) in
+                                  if difference1 > 0 then clone(0)(difference1) :: l1 else ? in
+?

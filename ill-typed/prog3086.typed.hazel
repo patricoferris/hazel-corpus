@@ -1,1 +1,3 @@
-let digitsOfInt : forall a -> Int -> [a] = typfun a -> fun n -> if n < 0 then [] else let a = n / 10 in let b = int_mod((n, 10)) in let c = a :: [b] in ? in ?
+let digitsOfInt : forall a -> Int -> [a] = typfun a -> fun n -> if n < 0 then [] else 
+  let a = n / 10 in let b = int_mod((n, 10)) in let c = a :: [b] in ? in
+?

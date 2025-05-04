@@ -3,7 +3,8 @@ type expr =
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Thresh(expr, expr, expr, expr)
- in let sampleExpr1 = Sine(Average(VarX(VarY))) in ?
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
+ in
+let sampleExpr1 = Sine(Average(VarX(VarY))) in ?

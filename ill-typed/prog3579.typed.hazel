@@ -1,0 +1,12 @@
+type expr = 
+  + VarX
+  + VarY
+  + Sine(expr)
+  + Cosine(expr)
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Hello1((expr, expr, expr))
+  + Thresh((expr, expr, expr, expr))
+  + Hello2((expr, expr, expr, expr))
+ in
+let sampleExpr4 : expr = Hello2((VarX, VarY, VarX, SinX)) in ?

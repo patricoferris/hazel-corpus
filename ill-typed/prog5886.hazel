@@ -3,22 +3,24 @@ type expr =
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Thresh(expr, expr, expr, expr)
-  + TimesTimes(expr, expr, expr)
-  + SqXPlusY(expr, expr)
- in type expr = 
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
+  + TimesTimes((expr, expr, expr))
+  + SqXPlusY((expr, expr))
+ in
+type expr = 
   + VarX
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Thresh(expr, expr, expr, expr)
-  + TimesTimes(expr, expr, expr)
-  + SqXPlusYDiv2(expr, expr)
- in let exprToString = fun e -> case e 
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
+  + TimesTimes((expr, expr, expr))
+  + SqXPlusYDiv2((expr, expr))
+ in
+let exprToString = fun e -> case e 
   | VarX => "x"
   | VarY => "y"
   | Sine(e1) => "sin (pi*" ++ exprToString(e1) ++ ")"
@@ -32,4 +34,5 @@ type expr =
       exprToString(e1) ++ " * " ++ exprToString(e2) ++ " * " ++ exprToString(e3)
   | SqXPlusY(e1, e2) =>
       "(" ++ exprToString(e1) ++ " * " ++ exprToString(e1) ++ ") + (" ++ exprToString(e2) ++ "/2"
-end in ?
+end in
+?

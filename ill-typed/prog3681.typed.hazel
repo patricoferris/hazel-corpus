@@ -1,1 +1,3 @@
-let digitsOfInt : Int -> unit = fun n -> let int = fun list -> fun digInt -> int_mod((n, 10)) :: digInt in ? in ?
+let digitsOfInt : Int -> unit = fun n -> let int = fun list -> fun digInt -> int_mod((n, 10)) :: digInt in
+                                         ? in
+?

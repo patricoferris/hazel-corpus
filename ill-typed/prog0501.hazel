@@ -3,10 +3,11 @@ type expr =
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Thresh(expr, expr, expr, expr)
- in let ets = fun e -> fun s -> case e 
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
+ in
+let ets = fun e -> fun s -> case e 
   | VarX => ets((e, s ++ VarX))
   | VarY => ets((e, s ++ VarY))
   | Sine => ets((e, s ++ Sine))
@@ -14,4 +15,5 @@ type expr =
   | Average => ets((e, s ++ Average))
   | Times => ets((e, s ++ Times))
   | Thresh => ets((e, s ++ Thresh))
-end in ?
+end in
+?

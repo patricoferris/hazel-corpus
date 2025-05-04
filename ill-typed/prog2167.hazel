@@ -1,1 +1,3 @@
-let listReverse = fun l -> let reverseHelper = fun acc -> if [] then acc else reverseHelper(h :: acc)(t) in reverseHelper([])(l) in ?
+let listReverse = fun l -> let reverseHelper = fun acc -> if [] then acc else reverseHelper(h :: acc)(t) in
+                           reverseHelper([])(l) in
+?

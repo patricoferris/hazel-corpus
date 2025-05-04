@@ -3,9 +3,10 @@ type expr =
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Thresh(expr, expr, expr, expr)
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
   + Op1(expr)
-  + Op2(expr, expr, expr)
- in let buildOp2 : forall a -> unit -> a = typfun a -> fun () -> Op2(()) in ?
+  + Op2((expr, expr, expr))
+ in
+let buildOp2 : forall a -> unit -> a = typfun a -> fun () -> Op2(()) in ?

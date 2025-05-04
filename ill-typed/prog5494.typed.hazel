@@ -1,0 +1,25 @@
+let pi : Float = 4. *. atan(1.) in type expr = 
+  + VarX
+  + VarY
+  + Sine(expr)
+  + Cosine(expr)
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
+  + Power((expr, expr))
+  + Op((expr, expr, expr))
+ in
+let eval : (expr, Float, Float) -> Float = fun (e, x, y) -> case e 
+  | VarX => x
+  | VarY => y
+  | Sine(n) => sin(pi *. eval((n, x, y)))
+  | Cosine(n) => cos(pi *. eval((n, x, y)))
+  | Average(m, n) => eval((m, x, y)) +. eval((n, x, y)) /. 2.
+  | Times(m, n) => eval((m, x, y)) *. eval((n, x, y))
+  | Thresh(m, n, o, p) =>
+      if eval((m, x, y)) < eval((n, x, y)) then eval((o, x, y)) else eval((p, x, y))
+  | Power(m, n) => eval((m, x, y)) ** eval((n, x, y))
+  | Op(m, n, o) =>
+      sqrt(eval((m, x, y)) +. eval((n, x, y)) +. eval((o, x, y))) /. 3.
+end in
+let _ = eval(Power((VarX, VarY, 0.5, -0.5))) in ?

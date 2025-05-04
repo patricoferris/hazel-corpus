@@ -1,4 +1,14 @@
-let clone = fun x -> fun n -> if n <= 0 then [] else x :: clone(x)(n - 1) in let padZero = fun l1 -> fun l2 -> let difference = length(l1) - length(l2) in if difference > 0 then (l1, @(clone(0)(difference))(l2)) else if difference < 0 then (@(clone(0)(-1 * difference))(l1), l2) else (l1, l2) in let removeZero = fun l -> case l 
+let clone = fun x -> fun n -> if n <= 0 then [] else x :: clone(x)(n - 1) in 
+let padZero = fun l1 -> fun l2 -> let difference = length(l1) - length(l2) in if difference > 0 then (l1, @(clone(0)(difference))(l2)) else if difference < 0 then (@(clone(0)(-1 * difference))(l1), l2) else (l1, l2) in
+let removeZero = fun l -> case l 
   | [] => l
   | h :: t => if h == 0 then removeZero(t) else h :: t
-end in let bigAdd = fun l1 -> fun l2 -> let add = fun (l1, l2) -> let f = fun a -> fun x -> ? in let base = (0, []) in let args = let combine = fun (a, b) -> a + b in map(combine)(rev(combine(l1)(l2))) in let (_, res) = fold_left(f)(base)(args) in res in removeZero(add(padZero(l1)(l2))) in ?
+end in
+let bigAdd = fun l1 -> fun l2 -> let add = fun (l1, l2) -> let f = fun a -> fun x -> ? in
+                                                         let base = (0, []) in
+                                                         let args = let combine = fun (a, b) -> a + b in
+                                                                    map(combine)(rev(combine(l1)(l2))) in
+                                                         let (_, res) = fold_left(f)(base)(args) in
+                                                         res in
+                               removeZero(add(padZero(l1)(l2))) in
+?

@@ -4,18 +4,20 @@ type expr =
   + Sine(expr)
   + Cosine(expr)
   + Neg(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Divadd(expr, expr, expr)
-  + Thresh(expr, expr, expr, expr)
- in type expr = 
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Divadd((expr, expr, expr))
+  + Thresh((expr, expr, expr, expr))
+ in
+type expr = 
   + VarX
   + VarY
   + Sine(expr)
   + Cosine(expr)
   + Neg(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + AddMul(expr, expr, expr)
-  + Thresh(expr, expr, expr, expr)
- in let sampleExpr3 = Neg(Divadd((VarX, VarY, VarY))) in ?
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + AddMul((expr, expr, expr))
+  + Thresh((expr, expr, expr, expr))
+ in
+let sampleExpr3 = Neg(Divadd((VarX, VarY, VarY))) in ?

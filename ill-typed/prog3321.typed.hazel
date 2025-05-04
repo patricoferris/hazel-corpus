@@ -3,10 +3,12 @@ type expr =
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Thresh(expr, expr, expr, expr)
- in let exprToString : forall a -> a -> String = typfun a -> fun e -> case e 
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
+ in
+let exprToString : forall a -> a -> String = typfun a -> fun e -> case e 
   | VarX(x) => "x"
   | VarY(y) => "y"
-end in ?
+end in
+?

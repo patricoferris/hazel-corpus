@@ -3,9 +3,10 @@ type expr =
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Thresh(expr, expr, expr, expr)
-  + Circ(expr, expr)
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
+  + Circ((expr, expr))
   + Oscillate(expr)
- in let buildCirc = fun c1 -> Circ(c1) in ?
+ in
+let buildCirc = fun c1 -> Circ(c1) in ?

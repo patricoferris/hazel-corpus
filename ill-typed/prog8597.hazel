@@ -3,12 +3,13 @@ type expr =
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Thresh(expr, expr, expr, expr)
-  + Circ(expr, expr)
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
+  + Circ((expr, expr))
   + Fibonacci(expr)
- in let pi = 4. *. atan(1.) in let eval = fun (e, x, y) -> case e 
+ in
+let pi = 4. *. atan(1.) in let eval = fun (e, x, y) -> case e 
   | VarX => x
   | VarY => y
   | Sine(sine) => sin(pi *. eval((sine, x, y)))
@@ -20,4 +21,5 @@ type expr =
   | Circ(circ1, circ2) =>
       eval((circ1, x, y)) ** 2. +. eval((circ2, x, y)) ** 2.
   | Arcsin(m4) => asin(eval((nlog, x, y)))
-end in ?
+end in
+?

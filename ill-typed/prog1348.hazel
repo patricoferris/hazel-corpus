@@ -3,12 +3,13 @@ type expr =
   + VarY
   + Sine(expr)
   + Cosine(expr)
-  + Average(expr, expr)
-  + Times(expr, expr)
-  + Thresh(expr, expr, expr, expr)
+  + Average((expr, expr))
+  + Times((expr, expr))
+  + Thresh((expr, expr, expr, expr))
   + Log(expr)
-  + SumOfSquares(expr, expr, expr)
- in let pi = 4. *. atan(1.) in let eval = fun (e, x, y) -> case e 
+  + SumOfSquares((expr, expr, expr))
+ in
+let pi = 4. *. atan(1.) in let eval = fun (e, x, y) -> case e 
   | VarX => x
   | VarY => y
   | Sine(e1) => sin(pi *. eval((e1, x, y)))
@@ -22,4 +23,5 @@ type expr =
 end
 | SumOfSquares(e1, e2, e3) =>
     eval((e1, x, y)) ** 2. +. eval((e2, x, y)) ** 2. +. eval((e3, x, y)) ** 2. /. 3.
-end in ?
+end in
+?
